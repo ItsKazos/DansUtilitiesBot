@@ -1,10 +1,10 @@
 {
 
-  "name": "Example",
+  "name": "Dan's Hangout",
 
-  "description": "Example",
+  "description": "Dan's Hangout Official Bot",
 
-  "version": "0.0.0",
+  "version": "0.0.1",
 
   "main": "bot.js",
 
