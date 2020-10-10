@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
 
   "name": "Dan's Hangout",
@@ -23,3 +24,30 @@
   }
 
 }
+=======
+{
+
+  "name": "Dan's Hangout",
+
+  "description": "Dan's Hangout Official Bot",
+
+  "version": "0.0.1",
+
+  "main": "bot.js",
+
+  "scripts": {
+
+    "start": "node bot.js"
+
+  },
+
+  "dependencies": {
+
+    "discord.js": "11.1.0",
+
+    "request": "2.81.0"
+
+  }
+
+}
+>>>>>>> e6466811e3a700b54b2f7d8a6dc0375f811ccf7b
