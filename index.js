@@ -23,6 +23,20 @@ bot.on("message", async message => {
             description: "a very simple embed!"
         }});
     }
+
+    if (cmd === `${prefix}slowmode`) {
+        if (
+            member.hasPermission('ADMINISTRATOR') ||
+            member.hasPermission('KICK_MEMBERS')
+        ) {
+            let slowmode = args.slice(0).join(" ")
+            if(!slowmode)return message.channel.send(`Please put a number in the command`)
+            if(isNaN(slowmode))return message.channel.send(`That is not a number!`)
+            message.channel.setRateLimitPerUser(slowmode)
+            message.channel.send(`Slowmode set to ${slowmode}`)
+        }
+    }
+
     if (cmd === `${prefix}ping`) {
         if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send("You do not have permission to execute this command!")
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
