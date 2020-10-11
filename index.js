@@ -19,6 +19,7 @@ bot.on("message", async message => {
     if (cmd === `${prefix}test`) {
         message.channel.send({embed: {
             title: "This is an embed",
+            color: 3447003,
             description: "a very simple embed!"
         }});
     }
