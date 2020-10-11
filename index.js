@@ -33,7 +33,7 @@ bot.on("message", async message => {
             member.hasPermission('ADMINISTRATOR') ||
             member.hasPermission('KICK_MEMBERS')
         ) {
-            const user = mentions.users.first()
+            let user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
             const reason = args.slice(1).join(" ")
             if (user) {
                 if(!args.slice(1).join(" ")) return message.channel.send("You did not specify the reason of this kick!");
