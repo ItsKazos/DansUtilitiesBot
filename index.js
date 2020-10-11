@@ -17,6 +17,11 @@ bot.on("message", async message => {
     let args = messageArray.slice(1);
 
     if (cmd === `${prefix}test`) {
+        const exampleEmbed = new Discord.MessageEmbed()
+            .setColor('#0099ff')
+            .setTitle('Some title')
+            .setDescription('Some description here')
+        channel.send(exampleEmbed);
         return message.channel.send("Hello World");
     }
     if (cmd === `${prefix}kick`) {
@@ -31,7 +36,6 @@ bot.on("message", async message => {
                 const targetMember = message.guild.members.cache.get(target.id)
                 targetMember.kick()
                 message.channel.send(`${targetMember} has been kicked.`)
-
             } else{
                 message.channel.send(`<@${member.id}>, please specify a player to kick from the server.`)
             }
