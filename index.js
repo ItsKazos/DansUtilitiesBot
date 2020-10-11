@@ -54,11 +54,16 @@ bot.on("message", async message => {
             let user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
             const reason = args.slice(1).join(" ")
             if (user) {
-                if(!args.slice(1).join(" ")) return message.channel.send("You did not specify the reason of this kick!");
+                if(!args.slice(1).join(" ")) return message.channel.send({embed: {
+                    title: `Command syntax failed!`,
+                    description: `Please do ${prefix}kick (mention player or ID) (reason)`
+                }});
                 const targetMember = message.guild.members.cache.get(user.id)
                 user.user.send({embed: {
                     description: `You have been kicked from the server.`
-                }}).catch(() => message.channel.send("That member has their dms disabled!"))
+                }}).catch(() => message.channel.send({embed: {
+                    description: `<@${user.id}> has their DM's disabled. Could not send a punishment alert.`
+                }}))
                 setTimeout(function() {
                     targetMember.kick(`${reason}`)
                     message.channel.send({embed: {
@@ -66,10 +71,16 @@ bot.on("message", async message => {
                     }});
                 }, 100);
             } else{
-                message.channel.send(`<@${member.id}>, please specify a player to kick from the server.`)
+                message.channel.send({embed: {
+                    title: `Command syntax failed!`,
+                    description: `Please do ${prefix}kick (mention player or ID) (reason)`
+                }});
             }
         } else{
-            message.channel.send(`<@${member.id}>, you do not have permission to use this command.`)
+            message.channel.send({embed: {
+                title: `Permission error`,
+                description: `<@${member.id}>, you do not have permission to preform ${prefix}kick. If this is in error, please contact <@325090475839324161> (The bot developer).`
+            }});
         }
     }
 });
