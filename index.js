@@ -31,7 +31,7 @@ bot.on("message", async message => {
         ) {
             const target = mentions.users.first()
             if (target) {
-                target.send(`tes`)
+                Client.users.get(`${target.id}`).send("Message to Send")
                 const targetMember = message.guild.members.cache.get(target.id)
                 targetMember.kick(`Kicked by: ${member.name}`)
                 message.channel.send(`${targetMember} has been kicked.`)
