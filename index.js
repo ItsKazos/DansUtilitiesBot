@@ -4,7 +4,7 @@ const bot = new discord.Client({disableEveryone: true});
 
 bot.on("ready", async () => {
     console.log(`${bot.user.username} is ready for action!`);
-    bot.user.setActivity("I see you :eyes:");
+    bot.user.setActivity('you', { type: 'WATCHING' });
 });
 
 bot.on("message", async message => {
