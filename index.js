@@ -17,6 +17,12 @@ bot.on("message", async message => {
     let args = messageArray.slice(1);
 
     if (cmd === `${prefix}test`) {
+        const target = mentions.users.first()
+        if (target) {
+            Client.users.get.message.guild.members.cache.get(target.id).send("Message to Send")
+        } else {
+            message.channel.send(`Improper syntax!`)
+        }
         return message.channel.send("Hello World");
     }
     if (cmd === `${prefix}kick`) {
@@ -29,7 +35,6 @@ bot.on("message", async message => {
             const target = mentions.users.first()
             if (target) {
                 const targetMember = message.guild.members.cache.get(target.id)
-                Client.users.get(`${targetMember}`).send("Message to Send")
                 targetMember.kick()
                 message.channel.send(`${targetMember} has been kicked.`)
 
