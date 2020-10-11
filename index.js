@@ -21,8 +21,7 @@ bot.on("message", async message => {
             .setColor('#0099ff')
             .setTitle('Some title')
             .setDescription('Some description here')
-        channel.send(exampleEmbed);
-        return message.channel.send("Hello World");
+        message.channel.send(exampleEmbed);
     }
     if (cmd === `${prefix}kick`) {
         const { member, mentions } = message
