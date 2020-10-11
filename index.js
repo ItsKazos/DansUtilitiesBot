@@ -18,6 +18,7 @@ bot.on("message", async message => {
 
     if (cmd === `${prefix}test`) {
         message.channel.send({embed: {
+            title: "This is an embed",
             description: "a very simple embed!"
         }});
     }
