@@ -38,9 +38,11 @@ bot.on("message", async message => {
             if (user) {
                 if(!args.slice(1).join(" ")) return message.channel.send("You did not specify the reason of this kick!");
                 const targetMember = message.guild.members.cache.get(user.id)
-                user.user.send(`You have been kicked from Dan's Hangout! Reason: ${reason}`).catch(() => message.channel.send("That member has their dms disabled!")).then(() => message.channel.send(`Sent a message to <@${user.id}>`))
-                targetMember.kick(`${reason}`)
-                message.channel.send(`${targetMember} has been kicked.`)
+                user.user.send(`You have been kicked from Dan's Hangout! Reason: ${reason}`).catch(() => message.channel.send("That member has their dms disabled!"))
+                setTimeout(function() {
+                    targetMember.kick(`${reason}`)
+                    message.channel.send(`${targetMember} has been kicked.`)
+                }, 100);
             } else{
                 message.channel.send(`<@${member.id}>, please specify a player to kick from the server.`)
             }
