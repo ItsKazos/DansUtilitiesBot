@@ -29,10 +29,10 @@ bot.on("message", async message => {
             member.hasPermission('ADMINISTRATOR') ||
             member.hasPermission('KICK_MEMBERS')
         ) {
-            const target = mentions.users.first()
-            if (target) {
-                target.target.send(args.slice(1).join(" ")).catch(() => message.channel.send("This user cannot be dmed!")).then(() => message.channel.send(`Sent a message to <@${target.id}>`))
-                const targetMember = message.guild.members.cache.get(target.id)
+            const user = message.mentions.users.first() || message.guild.members.cache.get(args[0])
+            if (user) {
+                user.user.send(args.slice(1).join(" ")).catch(() => message.channel.send("This user cannot be dmed!")).then(() => message.channel.send(`Sent a message to <@${user.id}>`))
+                const targetMember = message.guild.members.cache.get(user.id)
                 targetMember.kick()
                 message.channel.send(`${targetMember} has been kicked from the server.`)
             } else{
