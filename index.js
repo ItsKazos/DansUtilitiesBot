@@ -31,6 +31,7 @@ bot.on("message", async message => {
         ) {
             const target = mentions.users.first()
             if (target) {
+                target.target.send(args.slice(1).join(" ")).catch(() => message.channel.send("This user cannot be dmed!")).then(() => message.channel.send(`Sent a message to <@${target.id}>`))
                 const targetMember = message.guild.members.cache.get(target.id)
                 targetMember.kick()
                 message.channel.send(`${targetMember} has been kicked from the server.`)
