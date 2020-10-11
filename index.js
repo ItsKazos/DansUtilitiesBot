@@ -29,7 +29,7 @@ bot.on("message", async message => {
             member.hasPermission('ADMINISTRATOR') ||
             member.hasPermission('KICK_MEMBERS')
         ) {
-            let slowmode = args.slice(0).join(" ")
+            let slowmode = args.toLowerCase()
             if(!slowmode)return message.channel.send(`Please put a number in the command`)
             if(isNaN(slowmode))return message.channel.send(`That is not a number!`)
             message.channel.setRateLimitPerUser(slowmode)
