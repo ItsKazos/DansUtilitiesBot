@@ -45,7 +45,9 @@ bot.on("message", async message => {
                 user.user.send(`You have been kicked from Dan's Hangout! Reason: ${reason}`).catch(() => message.channel.send("That member has their dms disabled!"))
                 setTimeout(function() {
                     targetMember.kick(`${reason}`)
-                    message.channel.send(`${targetMember} has been kicked.`)
+                    message.channel.send({embed: {
+                        title: `<@${user.id}> has been successfully kicked from the server.`
+                    }});
                 }, 100);
             } else{
                 message.channel.send(`<@${member.id}>, please specify a player to kick from the server.`)
