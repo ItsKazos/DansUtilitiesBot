@@ -46,7 +46,7 @@ bot.on("message", async message => {
                 setTimeout(function() {
                     targetMember.kick(`${reason}`)
                     message.channel.send({embed: {
-                        title: `<@!${user.id}> has been successfully kicked from the server.`
+                        description: `<@${user.id}> has been successfully kicked from the server.`
                     }});
                 }, 100);
             } else{
