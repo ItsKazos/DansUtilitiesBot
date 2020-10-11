@@ -17,30 +17,10 @@ bot.on("message", async message => {
     let args = messageArray.slice(1);
 
     if (cmd === `${prefix}test`) {
-        const exampleEmbed = new Discord.MessageEmbed()
-            .setColor('#0099ff')
-            .setTitle('Some title')
-            .setDescription('Some description here');
-        message.channel.send(exampleEmbed);
+        return message.channel.send(`Test complete!`);
     }
-    if (cmd === `${prefix}mute`) {
-        let role = message.guild.roles.find(r => r.name === "Muted");
-        const { member, mentions } = message
+    if (cmd === `${prefix}ping`) {
 
-        if (
-            member.hasPermission('ADMINISTRATOR') ||
-            member.hasPermission('KICK_MEMBERS')
-        ) {
-            if (target) {
-                const target = mentions.users.first();
-                target.roles.add(role)
-                message.channel.send(`<@${target.id}> has been muted.`)
-            } else {
-                message.channel.send(`<@${member.id}>, please specify a user to mute.`)
-            }
-        } else{
-            message.channel.send(`<@${member.id}> Hey! You can't use that command!`)
-        }
     }
     if (cmd === `${prefix}kick`) {
         const { member, mentions } = message
