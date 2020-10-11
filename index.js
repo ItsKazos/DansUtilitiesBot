@@ -19,6 +19,19 @@ bot.on("message", async message => {
     if (cmd === `${prefix}test`) {
         return message.channel.send("Hello World");
     }
+    if (cmd === `${prefix}kick`) {
+        const { member, mentions } = message
+
+        if (
+            member.hasPermission('ADMINISTRATOR') ||
+            member.hasPermission('KICK_MEMBERS')
+        ) {
+            const target = mentions.users.first()
+            console.log(target)
+        } else{
+            message.channel.send(`<@${member.id}>, You do not have permission to use this command.`)
+        }
+    }
 });
 
 bot.login (config.token);
