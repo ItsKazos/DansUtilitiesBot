@@ -20,8 +20,20 @@ bot.on("message", async message => {
         const exampleEmbed = new Discord.MessageEmbed()
             .setColor('#0099ff')
             .setTitle('Some title')
-            .setDescription('Some description here')
+            .setDescription('Some description here');
         message.channel.send(exampleEmbed);
+    }
+    if (cmd === `${prefix}mute`) {
+        let role = message.guild.roles.find(r => r.name === "Muted");
+        const { member, mentions } = message
+
+        if (
+            member.hasPermission('ADMINISTRATOR') ||
+            member.hasPermission('KICK_MEMBERS')
+        ) {
+            const target = mentions.users.first();
+            target.roles.add(role)
+        }
     }
     if (cmd === `${prefix}kick`) {
         const { member, mentions } = message
