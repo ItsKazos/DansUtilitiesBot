@@ -24,7 +24,7 @@ bot.on("message", async message => {
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
         if (!user) return message.channel.send(`You did not mention a user or provide an ID!`);
         if(!args.slice(1).join(" ")) return message.channel.send("You did not specify your message");
-        user.user.send(args.slice(1).join()).catch(() => message.channel.send("That member has their dms disabled!")).then(() => message.channel.send(`Sent a message to <@${user.id}>`))
+        user.user.send(args.slice(1).join() + `hello there...`).catch(() => message.channel.send("That member has their dms disabled!")).then(() => message.channel.send(`Sent a message to <@${user.id}>`))
     }
     if (cmd === `${prefix}kick`) {
         const { member, mentions } = message
