@@ -35,6 +35,7 @@ bot.on("message", async message => {
         ) {
             const target = mentions.users.first()
             if (target) {
+                if(!args.slice(1).join(" ")) return message.channel.send("You did not specify the reason of this kick!");
                 const targetMember = message.guild.members.cache.get(target.id)
                 targetMember.kick()
                 message.channel.send(`${targetMember} has been kicked.`)
