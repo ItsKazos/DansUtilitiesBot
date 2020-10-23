@@ -25,6 +25,7 @@ bot.on("message", async message => {
     }
 
     if (cmd === `${prefix}slowmode`) {
+        const { member, mentions } = message
         if (
             member.hasPermission('ADMINISTRATOR') ||
             member.hasPermission('KICK_MEMBERS')
