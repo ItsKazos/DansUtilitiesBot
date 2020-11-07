@@ -34,14 +34,116 @@ bot.on("message", async message => {
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
 
-    if (cmd === `${prefix}test`) {
-        message.channel.send({embed: {
-            title: "This is an embed",
-            color: 3447003,
-            description: "a very simple embed!"
-        }});
+    if (cmd === `${prefix}ping`) {
+        const { member, mentions } = message
+        if (member.hasPermission("ADMINISTRATOR")) {
+            message.channel.send({embed: {
+                title: `Bot latency/ping`,
+                description: `Latency is ${Date.now() - message.createdTimestamp}ms
+API Latency is ${Math.round(bot.ws.ping)}ms.`
+            }})
+        }
     }
+    if(cmd === `${prefix}lock`) {
+        const { member, mentions } = message
+        if (
+            member.hasPermission('ADMINISTRATOR') ||
+            member.hasPermission('KICK_MEMBERS')
+        ) {
+            if (args.slice(0).join(" ") == `channel`) {
+                message.channel.updateOverwrite('762104108261572610', {
+                    SEND_MESSAGES: false
+                });
+                message.channel.send(`The channel has been locked to all members. Type ${prefix}unlock channel to unlock this channel`)
+            } else {
+                if (args.slice(0).join(" ") == `all`) {
+                    const channels = message.guild.channels.cache.filter(ch => ch.type !== 'category');
+                    channels.forEach(channel => {
+                        channel.updateOverwrite('762104108261572610', {
+                            SEND_MESSAGES: false
+                        });
+                        channel.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
+Refer to <#${message.channel.id}>!`)
+                    })
+                    message.channel.send(`All channels have been locked to all members. Type ${prefix}unlock all to unlock all channels`)
+                } else {
+                    message.channel.send(`Please type ${prefix}lock [all | channel]`)
+                }
+            }
+            
+        }
 
+    }
+    if(cmd === `${prefix}unlock`) {
+        const { member, mentions } = message
+        if (
+            member.hasPermission('ADMINISTRATOR') ||
+            member.hasPermission('KICK_MEMBERS')
+        ) {
+            if (args.slice(0).join(" ") == `channel`) {
+                message.channel.updateOverwrite('762104108261572610', {
+                    SEND_MESSAGES: null
+                });
+                message.channel.send(`The channel has been unlocked to all members.`)
+            } else {
+                if (args.slice(0).join(" ") == `all`) {
+                    general = bot.channels.cache.get("762115463911833641");
+                    generaloverflow = bot.channels.cache.get("762115504466296852");
+                    media = bot.channels.cache.get("762115512200331314");
+                    gaming = bot.channels.cache.get("762115542269820949");
+                    questions = bot.channels.cache.get("762115595063132202");
+                    otherlanguages = bot.channels.cache.get("762443522397306920");
+                    botcommands = bot.channels.cache.get("762154748530130984");
+                    appealmute = bot.channels.cache.get("762163187302137866");
+                    dankmemer = bot.channels.cache.get("770747807068848138");
+                    dankmemer2 = bot.channels.cache.get("771426330444693534");
+                    selfadvertising = bot.channels.cache.get("762116284342206464");
+                    voicetext = bot.channels.cache.get("762520920685805588");
+                    general.updateOverwrite('762104108261572610', {
+                        SEND_MESSAGES: null
+                    });
+                    generaloverflow.updateOverwrite('762104108261572610', {
+                        SEND_MESSAGES: null
+                    });
+                    media.updateOverwrite('762104108261572610', {
+                        SEND_MESSAGES: null
+                    });
+                    gaming.updateOverwrite('762104108261572610', {
+                        SEND_MESSAGES: null
+                    });
+                    questions.updateOverwrite('762104108261572610', {
+                        SEND_MESSAGES: null
+                    });
+                    otherlanguages.updateOverwrite('762104108261572610', {
+                        SEND_MESSAGES: null
+                    });
+                    botcommands.updateOverwrite('762104108261572610', {
+                        SEND_MESSAGES: null
+                    });
+                    appealmute.updateOverwrite('762104108261572610', {
+                        SEND_MESSAGES: null
+                    });
+                    dankmemer.updateOverwrite('762104108261572610', {
+                        SEND_MESSAGES: null
+                    });
+                    dankmemer2.updateOverwrite('762104108261572610', {
+                        SEND_MESSAGES: null
+                    });
+                    selfadvertising.updateOverwrite('762104108261572610', {
+                        SEND_MESSAGES: null
+                    });
+                    voicetext.updateOverwrite('762104108261572610', {
+                        SEND_MESSAGES: null
+                    });
+                    message.channel.send(`All channels have been unlocked to all members.`)
+                } else {
+                    message.channel.send(`Please type ${prefix}unlock [all | channel]`)
+                }
+            }
+            
+        }
+
+    }
     if (cmd === `${prefix}slowmode`) {
         const { member, mentions } = message
         if (
