@@ -1,16 +1,31 @@
 const discord = require("discord.js");
 const config = require("./config.json")
+const antispam = require('better-discord-antispam');
 const bot = new discord.Client({disableEveryone: true});
 
 bot.on("ready", async () => {
     console.log(`${bot.user.username} is ready for action!`);
     bot.user.setActivity('you', { type: 'WATCHING' });
+    antispam(bot, {
+        limitUntilWarn: 3,
+        limitUntilMuted: 5,
+        interval: 2000, 
+        warningMessage: "if you don't stop from spamming, I'm going to punish you!",
+        muteMessage: "was muted since we don't like too much advertisement type people!",
+        maxDuplicatesWarning: 7,
+        maxDuplicatesMute: 10,
+        ignoredRoles: ["="],
+        ignoredMembers: ["Clyde#0000"],
+        mutedRole: "Muted",
+        timeMuted: 1000 * 600,
+        logChannel: "automod-logs"
+    });
 });
 
 bot.on("message", async message => {
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
-
+    bot.emit('checkMessage', message);
     let prefix = config.prefix;
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
@@ -36,14 +51,6 @@ bot.on("message", async message => {
             message.channel.setRateLimitPerUser(slowmode)
             message.channel.send(`Slowmode set to ${slowmode}`)
         }
-    }
-
-    if (cmd === `${prefix}ping`) {
-        if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send("You do not have permission to execute this command!")
-        let user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-        if (!user) return message.channel.send(`You did not mention a user or provide an ID!`);
-        if(!args.slice(1).join(" ")) return message.channel.send("You did not specify your message");
-        user.user.send(args.slice(1).join(" ") + `hello there...`).catch(() => message.channel.send("That member has their dms disabled!")).then(() => message.channel.send(`Sent a message to <@${user.id}>`))
     }
     if (cmd === `${prefix}kick`) {
         const { member, mentions } = message
