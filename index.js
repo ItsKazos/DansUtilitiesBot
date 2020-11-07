@@ -2,22 +2,25 @@ const discord = require("discord.js");
 const config = require("./config.json")
 const antispam = require('better-discord-antispam');
 const bot = new discord.Client({disableEveryone: true});
+const { Player } = require("discord-music-player");
+const player = new Player(bot);
+bot.player = player;
 
 bot.on("ready", async () => {
     console.log(`${bot.user.username} is ready for action!`);
     bot.user.setActivity('you', { type: 'WATCHING' });
     antispam(bot, {
-        limitUntilWarn: 3,
-        limitUntilMuted: 5,
+        limitUntilWarn: 5,
+        limitUntilMuted: 10,
         interval: 2000, 
-        warningMessage: "if you don't stop from spamming, I'm going to punish you!",
-        muteMessage: "was muted since we don't like too much advertisement type people!",
-        maxDuplicatesWarning: 7,
-        maxDuplicatesMute: 10,
-        ignoredRoles: ["="],
+        warningMessage: "please do not spam or you will be muted.",
+        muteMessage: "you have been muted for 1 hour for spamming.",
+        maxDuplicatesWarning: 3,
+        maxDuplicatesMute: 5,
+        ignoredRoles: ["• Moderation Staff"],
         ignoredMembers: ["Clyde#0000"],
         mutedRole: "Muted",
-        timeMuted: 1000 * 600,
+        timeMuted: 1000 * 3600,
         logChannel: "automod-logs"
     });
 });
