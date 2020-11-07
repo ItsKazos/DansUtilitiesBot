@@ -62,9 +62,44 @@ API Latency is ${Math.round(bot.ws.ping)}ms.`
                         channel.updateOverwrite('762104108261572610', {
                             SEND_MESSAGES: false
                         });
-                        channel.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
-Refer to <#${message.channel.id}>!`)
                     })
+                    general = bot.channels.cache.get("762115463911833641");
+                    generaloverflow = bot.channels.cache.get("762115504466296852");
+                    media = bot.channels.cache.get("762115512200331314");
+                    gaming = bot.channels.cache.get("762115542269820949");
+                    questions = bot.channels.cache.get("762115595063132202");
+                    otherlanguages = bot.channels.cache.get("762443522397306920");
+                    botcommands = bot.channels.cache.get("762154748530130984");
+                    appealmute = bot.channels.cache.get("762163187302137866");
+                    dankmemer = bot.channels.cache.get("770747807068848138");
+                    dankmemer2 = bot.channels.cache.get("771426330444693534");
+                    selfadvertising = bot.channels.cache.get("762116284342206464");
+                    voicetext = bot.channels.cache.get("762520920685805588");
+                    general.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
+Refer to <#${message.channel.id}>!`)
+                    generaloverflow.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
+Refer to <#${message.channel.id}>!`)
+                    media.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
+Refer to <#${message.channel.id}>!`)
+                    gaming.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
+Refer to <#${message.channel.id}>!`)
+                    questions.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
+Refer to <#${message.channel.id}>!`)
+                    otherlanguages.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
+Refer to <#${message.channel.id}>!`)
+                    botcommands.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
+Refer to <#${message.channel.id}>!`)
+                    appealmute.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
+Refer to <#${message.channel.id}>!`)
+                    dankmemer.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
+Refer to <#${message.channel.id}>!`)
+                    dankmemer2.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
+Refer to <#${message.channel.id}>!`)
+                    selfadvertising.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
+Refer to <#${message.channel.id}>!`)
+                    voicetext.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
+Refer to <#${message.channel.id}>!`)
+                    
                     message.channel.send(`All channels have been locked to all members. Type ${prefix}unlock all to unlock all channels`)
                 } else {
                     message.channel.send(`Please type ${prefix}lock [all | channel]`)
