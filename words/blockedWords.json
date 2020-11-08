@@ -1,0 +1,27 @@
+{
+    "blockedWords": [
+        "fuck",
+        "shit",
+        "cunt",
+        "bitch",
+        "ass",
+        "fag",
+        "gay",
+        "queer",
+        "lesbian",
+        "nigger",
+        "nigga",
+        "penis",
+        "cock",
+        "dick",
+        "vagina"
+    ],
+
+    "noTag": [
+        "<@325090475839324161>",
+        "<@!325090475839324161>",
+        "<@682734448193699865>",
+        "<@!682734448193699865>"
+    ]
+
+}

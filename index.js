@@ -7,7 +7,8 @@ const player = new Player(bot);
 const ms = require('ms')
 const { get } = require("snekfetch"); 
 const randomPuppy = require('random-puppy');
-
+const minigames = require('discord-minigames')
+const fs = require('fs')
 bot.player = player;
 bot.on("ready", async () => {
     console.log(`${bot.user.username} is ready for action!`);
@@ -36,11 +37,42 @@ bot.on("message", async message => {
 **Message Content:**` + ' ``' + message.content + '``')
         message.channel.send("Your modmail was successfully sent to the moderators of this server.")
     }
+    var noWords = JSON.parse(fs.readFileSync("./words/blockedWords.json"));
+    var msg = message.content.toLowerCase();
+    const { member, mentions } = message
+    for (let i = 0; i < noWords["blockedWords"].length; i++) {
+        if (msg.includes(noWords["blockedWords"] [i])) {
+            if(!member.hasPermission('ADMINISTRATOR') && !member.hasPermission('KICK_MEMBERS')) {
+                message.delete()
+                return message.channel.send(`You aren't allowed to say that.`);
+            }
+        }
+    }
+    for (let i = 0; i < noWords["noTag"].length; i++) {
+        if (msg.includes(noWords["noTag"] [i])) {
+            if(!member.hasPermission('ADMINISTRATOR') && !member.hasPermission('KICK_MEMBERS')) {
+                message.delete()
+                return message.channel.send(`You aren't allowed to tag owners.`);
+            }
+        }
+    }
     bot.emit('checkMessage', message);
     let prefix = config.prefix;
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
+    if (cmd === `${prefix}battle`) {
+        if (!args[0]) {
+            return message.channel.send("Mention a player!")
+        }
+        minigames.startBattle(member, message)
+    }
+    if (cmd === `${prefix}ispy`) {
+        if (!args[0]) {
+            return message.channel.send("Mention a player!")
+        }
+        minigames.startISpy(member, message)
+    }
     if (cmd === `${prefix}reply`) {
         const { member, mentions } = message
         if(message.channel.id = `775051348897955841`) {
@@ -56,9 +88,6 @@ bot.on("message", async message => {
 **Message:** ` + '``' + args.slice(1).join(" ") + '``').catch(console.log("error"))
             message.channel.send("DMed the user.")
         }
-    }
-    if (cmd === `${prefix}profilepicture`) {
-        const { member, mentions } = message
     }
     if (cmd === `${prefix}dog`) {
         randomPuppy()
@@ -111,7 +140,7 @@ ${prefix}mvolume [Volume] - Sets the players volume`)
         if(!args[0]) {
             return message.channel.send("<@" + message.author.id + ">, please type a proper song to play.")
         }
-        let channel = bot.channels.cache.get('769969625324585021');
+        let channel = message.member.channel
         channel.join().then(connection => {
             connection.voice.setSelfDeaf(true);
         });
@@ -136,7 +165,7 @@ ${prefix}mvolume [Volume] - Sets the players volume`)
         }
         let queue = await bot.player.getQueue(message.guild.id);
         message.channel.send('Server queue:\n'+(queue.songs.map((song, i) => {
-            return `${i === 0 ? 'Current' : `#${i+1}`} - ${song.name} | ${song.author}`
+            return `${i === 0 ? 'Current' : `#${i+1}`} - ${song.name} | ${song.author.name}`
         }).join('\n')));
     }
     if (cmd === `${prefix}mclearqueue`) {
@@ -144,7 +173,9 @@ ${prefix}mvolume [Volume] - Sets the players volume`)
         if(!member.hasPermission("ADMINISTRATOR")) {
             return;
         }
-        bot.player.clearQueue(message.guild.id);
+        bot.player.clearQueue(message.guild.id).catch(err => {
+            throw err;
+        })
         message.channel.send('Queue cleared!');
     }
     if (cmd === `${prefix}mskip`) {
