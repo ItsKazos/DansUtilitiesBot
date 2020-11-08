@@ -27,12 +27,33 @@ bot.on("ready", async () => {
 
 bot.on("message", async message => {
     if (message.author.bot) return;
-    if (message.channel.type === "dm") return;
+    if (message.channel.type === "dm") {
+        botdms = bot.channels.cache.get("775051348897955841");
+        botdms.send(`**Direct Message from:** <@${message.author.id}>
+**Message Content:**` + ' ``' + message.content + '``')
+        message.channel.send("Your modmail was successfully sent to the moderators of this server.")
+    }
     bot.emit('checkMessage', message);
     let prefix = config.prefix;
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
+    if (cmd === `${prefix}reply`) {
+        const { member, mentions } = message
+        if(message.channel.id = `775051348897955841`) {
+            let user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+            if (!user) {
+                return message.channel.send("Please supply a user.")
+            }
+            if (!args.slice(1).join(" ")) {
+                return message.channel.send("Please supply an update.")
+            }
+            user.user.send(`**Your modmail status was updated**
+**Message from:** <@${member.id}>
+**Message:** ` + '``' + args.slice(1).join(" ") + '``').catch(console.log("error"))
+            message.channel.send("DMed the user.")
+        }
+    }
     if (cmd === `${prefix}mhelp`) {
         const { member, mentions } = message
         if(!member.hasPermission("ADMINISTRATOR")) {
