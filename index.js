@@ -322,7 +322,7 @@ API Latency is ${Math.round(bot.ws.ping)}ms.`
             member.hasPermission('KICK_MEMBERS')
         ) {
             if (args[0] == `channel`) {
-                message.channel.updateOverwrite('762104108261572610', {
+                message.channel.updateOverwrite(everyone, {
                     SEND_MESSAGES: false
                 });
                 message.channel.send({embed: {
@@ -338,11 +338,6 @@ Reason: ${args.slice(1).join(" ")}`,
             } else {
                 if (args[0] == `all`) {
                     const channels = message.guild.channels.cache.filter(ch => ch.type !== 'category');
-                    channels.forEach(channel => {
-                        channel.updateOverwrite('762104108261572610', {
-                            SEND_MESSAGES: false
-                        });
-                    })
                     if(message.guild.id == `774806096019324938`) {
                         general = bot.channels.cache.get("774806096623304736");
                         generaloverflow = bot.channels.cache.get("774806096623304737");
@@ -356,6 +351,7 @@ Reason: ${args.slice(1).join(" ")}`,
                         dankmemer2 = bot.channels.cache.get("774816409133645895");
                         selfadvertising = bot.channels.cache.get("774806097403838481");
                         voicetext = bot.channels.cache.get("774806097982259211");
+                        everyone = '774806096019324938'
                     } else {
                         general = bot.channels.cache.get("762115463911833641");
                         generaloverflow = bot.channels.cache.get("762115504466296852");
@@ -369,8 +365,14 @@ Reason: ${args.slice(1).join(" ")}`,
                         dankmemer2 = bot.channels.cache.get("771426330444693534");
                         selfadvertising = bot.channels.cache.get("762116284342206464");
                         voicetext = bot.channels.cache.get("762520920685805588");
-
+                        everyone = '762104108261572610'
                     }
+                    channels.forEach(channel => {
+                        channel.updateOverwrite(everyone, {
+                            SEND_MESSAGES: false
+                        });
+                    })
+
                     general.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
 Refer to <#${message.channel.id}>!`)
                     generaloverflow.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
@@ -421,7 +423,7 @@ Reason: ${args.slice(1).join(" ")}`,
             member.hasPermission('KICK_MEMBERS')
         ) {
             if (args.slice(0).join(" ") == `channel`) {
-                message.channel.updateOverwrite('762104108261572610', {
+                message.channel.updateOverwrite(everyone, {
                     SEND_MESSAGES: null
                 });
                 message.channel.send(`The channel has been unlocked to all members.`)
@@ -440,6 +442,7 @@ Reason: ${args.slice(1).join(" ")}`,
                         dankmemer2 = bot.channels.cache.get("774816409133645895");
                         selfadvertising = bot.channels.cache.get("774806097403838481");
                         voicetext = bot.channels.cache.get("774806097982259211");
+                        everyone = '774806096019324938'
                     } else {
                         general = bot.channels.cache.get("762115463911833641");
                         generaloverflow = bot.channels.cache.get("762115504466296852");
@@ -453,41 +456,42 @@ Reason: ${args.slice(1).join(" ")}`,
                         dankmemer2 = bot.channels.cache.get("771426330444693534");
                         selfadvertising = bot.channels.cache.get("762116284342206464");
                         voicetext = bot.channels.cache.get("762520920685805588");
+                        everyone = '762104108261572610'
                     }
-                    general.updateOverwrite('762104108261572610', {
+                    general.updateOverwrite(everyone, {
                         SEND_MESSAGES: null
                     });
-                    generaloverflow.updateOverwrite('762104108261572610', {
+                    generaloverflow.updateOverwrite(everyone, {
                         SEND_MESSAGES: null
                     });
-                    media.updateOverwrite('762104108261572610', {
+                    media.updateOverwrite(everyone, {
                         SEND_MESSAGES: null
                     });
-                    gaming.updateOverwrite('762104108261572610', {
+                    gaming.updateOverwrite(everyone, {
                         SEND_MESSAGES: null
                     });
-                    questions.updateOverwrite('762104108261572610', {
+                    questions.updateOverwrite(everyone, {
                         SEND_MESSAGES: null
                     });
-                    otherlanguages.updateOverwrite('762104108261572610', {
+                    otherlanguages.updateOverwrite(everyone, {
                         SEND_MESSAGES: null
                     });
-                    botcommands.updateOverwrite('762104108261572610', {
+                    botcommands.updateOverwrite(everyone, {
                         SEND_MESSAGES: null
                     });
-                    appealmute.updateOverwrite('762104108261572610', {
+                    appealmute.updateOverwrite(everyone, {
                         SEND_MESSAGES: null
                     });
-                    dankmemer.updateOverwrite('762104108261572610', {
+                    dankmemer.updateOverwrite(everyone, {
                         SEND_MESSAGES: null
                     });
-                    dankmemer2.updateOverwrite('762104108261572610', {
+                    dankmemer2.updateOverwrite(everyone, {
                         SEND_MESSAGES: null
                     });
-                    selfadvertising.updateOverwrite('762104108261572610', {
+                    selfadvertising.updateOverwrite(everyone, {
                         SEND_MESSAGES: null
                     });
-                    voicetext.updateOverwrite('762104108261572610', {
+                    voicetext.updateOverwrite(everyone, {
                         SEND_MESSAGES: null
                     });
                     message.channel.send(`All channels have been unlocked to all members.`)
