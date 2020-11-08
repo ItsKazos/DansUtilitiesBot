@@ -97,7 +97,7 @@ API Latency is ${Math.round(bot.ws.ping)}ms.`
                 if(args.slice(1).join(" ")) {
                     user.user.send(`You have been muted from ${message.guild.name}!
 **Reason:** ${args.slice(2).join(" ")}
-**Duration:** ${args[1]}`)
+**Duration:** ${args[1]}`).catch(message.channel.send(`<@${user.id}> has their DM's disabled.`))
                     message.channel.send({embed: {
                         title: `User Temporarily Muted`,
                         color: `00ff48`,
@@ -152,7 +152,7 @@ API Latency is ${Math.round(bot.ws.ping)}ms.`
                 if(args.slice(2).join(" ")) {
                     user.user.send(`You have been banned from ${message.guild.name}!
 **Reason:** ${args.slice(2).join(" ")}
-**Duration:** ${args[1]}`)
+**Duration:** ${args[1]}`).catch(message.channel.send(`<@${user.id}> has their DM's disabled.`))
                     message.channel.send({embed: {
                         title: `User Temporarily Banned`,
                         color: `00ff48`,
@@ -199,7 +199,7 @@ API Latency is ${Math.round(bot.ws.ping)}ms.`
             if(user) {
                 if(args.slice(1).join(" ")) {
                     user.user.send(`You have been muted from ${message.guild.name}!
-**Reason:** ${args.slice(1).join(" ")}`)
+**Reason:** ${args.slice(1).join(" ")}`).catch(message.channel.send(`<@${user.id}> has their DM's disabled.`))
                     message.channel.send({embed: {
                         title: `User Muted`,
                         color: `00ff48`,
@@ -237,7 +237,7 @@ API Latency is ${Math.round(bot.ws.ping)}ms.`
             if(user) {
                 if(args.slice(1).join(" ")) {
                     user.user.send(`You have been banned from **${message.guild.name}** server!
-**Reason:** ${args.slice(1).join(" ")}`)
+**Reason:** ${args.slice(1).join(" ")}`).catch(message.channel.send(`<@${user.id}> has their DM's disabled.`))
                     const targetMember = message.guild.members.cache.get(user.id)
                     message.channel.send({embed: {
                         title: `User Banned`,
@@ -276,7 +276,7 @@ API Latency is ${Math.round(bot.ws.ping)}ms.`
             if(user) {
                 if(args.slice(1).join(" ")) {
                     user.user.send(`You have been warned from **${message.guild.name}** server!
-**Reason:** ${args.slice(1).join(" ")}`)
+**Reason:** ${args.slice(1).join(" ")}`).catch(message.channel.send(`<@${user.id}> has their DM's disabled.`))
                     const targetMember = message.guild.members.cache.get(user.id)
                     message.channel.send({embed: {
                         title: `User Warned`,
