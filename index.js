@@ -36,6 +36,20 @@ bot.on("message", async message => {
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
 
+    if (message.channel.id === `774816409133645895`) {
+        if(cmd === `${prefix}verify`) {
+            if (args[0] === `E39h2kg3A`) {
+                const { member, mentions } = message
+                let role = message.guild.roles.cache.find(r => r.name === "Member");
+                member.roles.add(role)
+                message.delete();
+            } else {
+                message.delete();
+            }
+        } else {
+            message.delete();
+        }
+    }
     if (cmd === `${prefix}ping`) {
         const { member, mentions } = message
         if (member.hasPermission("ADMINISTRATOR")) {
@@ -468,5 +482,4 @@ Reason: ${args.slice(1).join(" ")}`,
         }
     }
 });
-
 bot.login (config.token);
