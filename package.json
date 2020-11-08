@@ -14,9 +14,14 @@
     "discord-money": "^0.2.0",
     "discord-music-player": "^5.0.4",
     "discord.js": "^12.3.1",
+    "fetch": "^1.1.0",
     "ms": "^2.1.2",
+    "node-fetch": "^2.6.1",
     "opusscript": "0.0.7",
+    "pixabay-api": "^1.0.4",
     "random-number": "0.0.9",
+    "random-puppy": "^1.1.0",
+    "snekfetch": "^4.0.4",
     "sqlite3": "^5.0.0"
   }
 }

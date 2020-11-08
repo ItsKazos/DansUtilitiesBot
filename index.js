@@ -5,6 +5,9 @@ const bot = new discord.Client({disableEveryone: true});
 const { Player } = require("discord-music-player");
 const player = new Player(bot);
 const ms = require('ms')
+const { get } = require("snekfetch"); 
+const randomPuppy = require('random-puppy');
+
 bot.player = player;
 bot.on("ready", async () => {
     console.log(`${bot.user.username} is ready for action!`);
@@ -12,7 +15,7 @@ bot.on("ready", async () => {
     antispam(bot, {
         limitUntilWarn: 5,
         limitUntilMuted: 10,
-        interval: 2000, 
+        interval: 2000,
         warningMessage: "please do not spam or you will be muted.",
         muteMessage: "you have been muted for 1 hour for spamming.",
         maxDuplicatesWarning: 3,
@@ -54,6 +57,35 @@ bot.on("message", async message => {
             message.channel.send("DMed the user.")
         }
     }
+    if (cmd === `${prefix}profilepicture`) {
+        const { member, mentions } = message
+    }
+    if (cmd === `${prefix}dog`) {
+        randomPuppy()
+            .then(url => {
+                const embed = new discord.MessageEmbed()
+                .setAuthor('A cute little puppy')
+                .setColor('00ff48')
+                .setImage(url)
+                .setFooter(`Requested by ${message.author.tag}`, message.author.avatarURL())
+                message.channel.send(embed)
+            })
+    }
+    if(cmd === `${prefix}cat`) {
+		try {
+			get('https://aws.random.cat/meow').then(res => {
+				const embed = new discord.MessageEmbed()
+                .setAuthor('A cute little kitty')
+                .setColor('00ff48')
+				.setImage(res.body.file)
+                .setFooter(`Requested by ${message.author.tag}`, message.author.avatarURL())
+				return message.channel.send(embed);
+			});
+		} catch(err) {
+			return message.channel.send(err.stack);
+		}
+	}
+	
     if (cmd === `${prefix}mhelp`) {
         const { member, mentions } = message
         if(!member.hasPermission("ADMINISTRATOR")) {
