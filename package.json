@@ -21,7 +21,6 @@
     "pixabay-api": "^1.0.4",
     "random-number": "0.0.9",
     "random-puppy": "^1.1.0",
-    "snekfetch": "^4.0.4",
-    "sqlite3": "^5.0.0"
+    "snekfetch": "^4.0.4"
   }
 }
