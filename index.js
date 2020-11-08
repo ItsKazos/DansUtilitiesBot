@@ -35,6 +35,56 @@ bot.on("message", async message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
+    if (cmd === `${prefix}mplay`) {
+        if(!args[0]) {
+            return message.channel.send("<@" + message.author.id + ">, please type a proper song to play.")
+        }
+        let channel = bot.channels.cache.get('769969625324585021');
+        channel.join().then(connection => {
+            connection.voice.setSelfDeaf(true);
+        });
+        let isPlaing = bot.player.isPlaying(message.guild.id);
+        // If there's already a song playing
+        if(isPlaing){
+            // Add the song to the queue
+            let song = await bot.player.addToQueue(message.guild.id, args[0]);
+            song = song.song;
+            message.channel.send(`${song.name} added to queue!`);
+        } else {
+            // Else, play the song
+            let song = await bot.player.play(message.member.voice.channel, args[0]);
+            song = song.song;
+            message.channel.send(`Currently playing ${song.name}!`);
+        }
+    }
+    if (cmd === `${prefix}mqueue`) {
+        let queue = await bot.player.getQueue(message.guild.id);
+        message.channel.send('Server queue:\n'+(queue.songs.map((song, i) => {
+            return `${i === 0 ? 'Current' : `#${i+1}`} - ${song.name} | ${song.author}`
+        }).join('\n')));
+    }
+    if (cmd === `${prefix}mclearqueue`) {
+        bot.player.clearQueue(message.guild.id);
+        message.channel.send('Queue cleared!');
+    }
+    if (cmd === `${prefix}mskip`) {
+        let song = await bot.player.skip(message.guild.id);
+        message.channel.send(`${song.name} skipped!`);
+    }
+    if (cmd === `${prefix}mstop`) {
+        bot.player.stop(message.guild.id);
+        message.channel.send('Music stopped!');
+    }
+    if (cmd === `${prefix}mvolume`) {
+        if(!args[0]) {
+            return message.channel.send("<@" + message.author.id + ">, please type a proper volume.")
+        }
+        if(isNaN(args[0])) {
+            return message.channel.send("<@" + message.author.id + ">, please type a proper volume.")
+        }
+        bot.player.setVolume(message.guild.id, parseInt(args[0]));
+        message.channel.send(`Volume set to ${args[0]} !`);
+    }
     if (cmd === `${prefix}addping`) {
         const { member, mentions } = message
         if(message.guild.id === `762104108261572610`) {
