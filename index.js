@@ -14,13 +14,13 @@ bot.on("ready", async () => {
     console.log(`${bot.user.username} is ready for action!`);
     bot.user.setActivity('you', { type: 'WATCHING' });
     antispam(bot, {
-        limitUntilWarn: 5,
-        limitUntilMuted: 10,
+        limitUntilWarn: 3,
+        limitUntilMuted: 5,
         interval: 2000,
         warningMessage: "please do not spam or you will be muted.",
         muteMessage: "you have been muted for 1 hour for spamming.",
-        maxDuplicatesWarning: 3,
-        maxDuplicatesMute: 5,
+        maxDuplicatesWarning: 5,
+        maxDuplicatesMute: 10,
         ignoredRoles: ["• Moderation Staff"],
         ignoredMembers: ["Clyde#0000"],
         mutedRole: "Muted",
