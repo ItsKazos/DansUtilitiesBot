@@ -119,12 +119,12 @@ ${prefix}mvolume [Volume] - Sets the players volume`)
         // If there's already a song playing
         if(isPlaing){
             // Add the song to the queue
-            let song = await bot.player.addToQueue(message.guild.id, args[0]);
+            let song = await bot.player.addToQueue(message.guild.id, args.slice(0).join(" "));
             song = song.song;
             message.channel.send(`${song.name} added to queue!`);
         } else {
             // Else, play the song
-            let song = await bot.player.play(message.member.voice.channel, args[0]);
+            let song = await bot.player.play(message.member.voice.channel, args.slice(0).join(" "));
             song = song.song;
             message.channel.send(`Currently playing ${song.name}!`);
         }
