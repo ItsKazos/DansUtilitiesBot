@@ -35,7 +35,28 @@ bot.on("message", async message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
+    if (cmd === `${prefix}mhelp`) {
+        const { member, mentions } = message
+        if(!member.hasPermission("ADMINISTRATOR")) {
+            return;
+        }
+        let helpEmbed = new discord.MessageEmbed()
+        .setTitle("Help with Music")
+        .setDescription(`**Commands:**
+${prefix}mplay [Song] - Plays a song
+${prefix}mqueue - Lists songs in queue
+${prefix}mclearqueue - Clears the queue
+${prefix}mskip - Skips the current song
+${prefix}mstop - Stops the music
+${prefix}mvolume [Volume] - Sets the players volume`)
+        .setColor("00ff48")
+        message.channel.send(helpEmbed)
+    }
     if (cmd === `${prefix}mplay`) {
+        const { member, mentions } = message
+        if(!member.hasPermission("ADMINISTRATOR")) {
+            return;
+        }
         if(!args[0]) {
             return message.channel.send("<@" + message.author.id + ">, please type a proper song to play.")
         }
@@ -58,24 +79,44 @@ bot.on("message", async message => {
         }
     }
     if (cmd === `${prefix}mqueue`) {
+        const { member, mentions } = message
+        if(!member.hasPermission("ADMINISTRATOR")) {
+            return;
+        }
         let queue = await bot.player.getQueue(message.guild.id);
         message.channel.send('Server queue:\n'+(queue.songs.map((song, i) => {
             return `${i === 0 ? 'Current' : `#${i+1}`} - ${song.name} | ${song.author}`
         }).join('\n')));
     }
     if (cmd === `${prefix}mclearqueue`) {
+        const { member, mentions } = message
+        if(!member.hasPermission("ADMINISTRATOR")) {
+            return;
+        }
         bot.player.clearQueue(message.guild.id);
         message.channel.send('Queue cleared!');
     }
     if (cmd === `${prefix}mskip`) {
+        const { member, mentions } = message
+        if(!member.hasPermission("ADMINISTRATOR")) {
+            return;
+        }
         let song = await bot.player.skip(message.guild.id);
         message.channel.send(`${song.name} skipped!`);
     }
     if (cmd === `${prefix}mstop`) {
+        const { member, mentions } = message
+        if(!member.hasPermission("ADMINISTRATOR")) {
+            return;
+        }
         bot.player.stop(message.guild.id);
         message.channel.send('Music stopped!');
     }
     if (cmd === `${prefix}mvolume`) {
+        const { member, mentions } = message
+        if(!member.hasPermission("ADMINISTRATOR")) {
+            return;
+        }
         if(!args[0]) {
             return message.channel.send("<@" + message.author.id + ">, please type a proper volume.")
         }
