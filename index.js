@@ -58,6 +58,8 @@ bot.on("message", async message => {
                         }
                     }
                 }
+            } else {
+                message.channel.send("<@" + member.id + ">, please type ``" + prefix + "addping [giveaways | announcements | staffupdates]``.")
             }
         } else {
             message.channel.send("<@" + member.id + ">, you can't use this command in ``" + message.guild.name + " server!``, This command requires to be used in ``Dan's Hangout``.")
