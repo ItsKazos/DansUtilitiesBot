@@ -50,13 +50,22 @@ API Latency is ${Math.round(bot.ws.ping)}ms.`
             member.hasPermission('ADMINISTRATOR') ||
             member.hasPermission('KICK_MEMBERS')
         ) {
-            if (args.slice(0).join(" ") == `channel`) {
+            if (args[0] == `channel`) {
                 message.channel.updateOverwrite('762104108261572610', {
                     SEND_MESSAGES: false
                 });
-                message.channel.send(`The channel has been locked to all members. Type ${prefix}unlock channel to unlock this channel`)
+                message.channel.send({embed: {
+                    title: `Channel Locked`,
+                    description: `The channel was locked by a staff member. **You are not muted.**
+More information will be sent in this channel.
+Reason: ${args.slice(1).join(" ")}`,
+                    footer: {
+                        text: `Locked by ${message.author.tag}`
+                    }
+                }})
+                message.delete();
             } else {
-                if (args.slice(0).join(" ") == `all`) {
+                if (args[0] == `all`) {
                     const channels = message.guild.channels.cache.filter(ch => ch.type !== 'category');
                     channels.forEach(channel => {
                         channel.updateOverwrite('762104108261572610', {
@@ -100,9 +109,18 @@ Refer to <#${message.channel.id}>!`)
                     voicetext.send(`:oncoming_police_car: All channels have been locked! :oncoming_police_car:
 Refer to <#${message.channel.id}>!`)
                     
-                    message.channel.send(`All channels have been locked to all members. Type ${prefix}unlock all to unlock all channels`)
+                    message.channel.send({embed: {
+                        title: `Channel Locked`,
+                        description: `The server was locked by a staff member. **You are not muted.**
+More information will be sent in this channel.
+Reason: ${args.slice(1).join(" ")}`,
+                        footer: {
+                            text: `Locked by ${message.author.tag}`
+                        }
+                    }})
+                    message.delete();
                 } else {
-                    message.channel.send(`Please type ${prefix}lock [all | channel]`)
+                    message.channel.send(`Please type ${prefix}lock [all | channel] [reason]`)
                 }
             }
             
