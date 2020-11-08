@@ -4,7 +4,9 @@ const antispam = require('better-discord-antispam');
 const bot = new discord.Client({disableEveryone: true});
 const { Player } = require("discord-music-player");
 const player = new Player(bot);
+const ms = require('ms')
 bot.player = player;
+
 
 bot.on("ready", async () => {
     console.log(`${bot.user.username} is ready for action!`);
@@ -42,6 +44,261 @@ bot.on("message", async message => {
                 description: `Latency is ${Date.now() - message.createdTimestamp}ms
 API Latency is ${Math.round(bot.ws.ping)}ms.`
             }})
+        }
+    }
+    if (cmd === `${prefix}clear`) {
+        const { member, mentions } = message
+        if(
+            member.hasPermission("ADMINISTRATOR") ||
+            member.hasPermission("KICK_MEMBERS")
+        ) {
+            const amount = args.join(' ');
+            if(!amount) {
+                message.channel.send({embed: {
+                    title: `Command syntax failed!`,
+                    color: `fc0303`,
+                    description: `Please do ${prefix}clear (Amount)`
+                }});
+            } else {
+                if(!isNaN(amount)) {
+                    message.channel.bulkDelete(amount)
+                    message.channel.send(`Deleted ${amount}!`).then(msg => msg.delete({ timeout: 5000 })).catch();
+                } else {
+                    message.channel.send({embed: {
+                        title: `Command syntax failed!`,
+                        color: `fc0303`,
+                        description: `Please do ${prefix}clear (Amount)`
+                    }});
+                }
+            }
+        }
+    }
+    if (cmd === `${prefix}tempmute`) {
+        const { member, mentions } = message
+
+        if (
+            member.hasPermission('ADMINISTRATOR') ||
+            member.hasPermission('KICK_MEMBERS')
+        ) {
+            let user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+            let role = message.guild.roles.cache.find(r => r.name === "Muted");
+            if (!role) {
+                return message.channel.send("Couldn't find the muted role!");
+            }
+            let timestamp = args[1]
+            if (!timestamp) {
+                return message.channel.send({embed: {
+                    title: `Command syntax failed!`,
+                    color: `fc0303`,
+                    description: `Please do ${prefix}tempmute (Member) (Timestamp) (Reason)`
+                }});
+            }
+            if(user) {
+                if(args.slice(1).join(" ")) {
+                    user.user.send(`You have been muted from ${message.guild.name}!
+**Reason:** ${args.slice(2).join(" ")}
+**Duration:** ${args[1]}`)
+                    message.channel.send({embed: {
+                        title: `User Temporarily Muted`,
+                        color: `00ff48`,
+                        description: `**User:** <@${user.id}>
+**Staff:** <@${member.id}>
+**Reason:** ${args.slice(2).join(" ")}
+**Duration:** ${args[1]}`
+                    }})
+                    setTimeout(function() {
+                        user.roles.add(role)
+                    }, 1000);
+                    setTimeout(function() {
+                        user.roles.remove(role)
+                    }, ms(timestamp));
+                } else {
+                    message.channel.send({embed: {
+                        title: `Command syntax failed!`,
+                        color: `fc0303`,
+                        description: `Please do ${prefix}tempmute (Member) (Timestamp) (Reason)`
+                    }});
+                }
+            } else {
+                message.channel.send({embed: {
+                    title: `Command syntax failed!`,
+                    color: `fc0303`,
+                    description: `Please do ${prefix}tempmute (Member) (Timestamp) (Reason)`
+                }});
+            }
+        }
+    }
+    if (cmd === `${prefix}tempban`) {
+        const { member, mentions } = message
+
+        if (
+            member.hasPermission('ADMINISTRATOR') ||
+            member.hasPermission('KICK_MEMBERS')
+        ) {
+            let user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+            let role = message.guild.roles.cache.find(r => r.name === "Muted");
+            if (!role) {
+                return message.channel.send("Couldn't find the muted role!");
+            }
+            let timestamp = args[1]
+            if (!timestamp) {
+                return message.channel.send({embed: {
+                    title: `Command syntax failed!`,
+                    color: `fc0303`,
+                    description: `Please do ${prefix}tempban (Member) (Timestamp) (Reason)`
+                }});
+            }
+            if(user) {
+                if(args.slice(2).join(" ")) {
+                    user.user.send(`You have been banned from ${message.guild.name}!
+**Reason:** ${args.slice(2).join(" ")}
+**Duration:** ${args[1]}`)
+                    message.channel.send({embed: {
+                        title: `User Temporarily Banned`,
+                        color: `00ff48`,
+                        description: `**User:** <@${user.id}>
+**Staff:** <@${member.id}>
+**Reason:** ${args.slice(1).join(" ")}
+**Duration:** ${args[1]}`
+                    }})
+                    const targetMember = message.guild.members.cache.get(user.id)
+                    setTimeout(function() {
+                        targetMember.ban({reason: `${args.slice(2).join(" ")}`})
+                    }, 1000);
+                    setTimeout(function() {
+                        message.guild.members.unban(user.id)
+                    }, ms(timestamp));
+                } else {
+                    message.channel.send({embed: {
+                        title: `Command syntax failed!`,
+                        color: `fc0303`,
+                        description: `Please do ${prefix}tempban (Member) (Timestamp) (Reason)`
+                    }});
+                }
+            } else {
+                message.channel.send({embed: {
+                    title: `Command syntax failed!`,
+                    color: `fc0303`,
+                    description: `Please do ${prefix}tempban (Member) (Timestamp) (Reason)`
+                }});
+            }
+        }
+    }
+    if (cmd === `${prefix}mute`) {
+        const { member, mentions } = message
+
+        if (
+            member.hasPermission('ADMINISTRATOR') ||
+            member.hasPermission('KICK_MEMBERS')
+        ) {
+            let user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+            let role = message.guild.roles.cache.find(r => r.name === "Muted");
+            if (!role) {
+                return message.channel.send("Couldn't find the muted role!");
+            }
+            if(user) {
+                if(args.slice(1).join(" ")) {
+                    user.user.send(`You have been muted from ${message.guild.name}!
+**Reason:** ${args.slice(1).join(" ")}`)
+                    message.channel.send({embed: {
+                        title: `User Muted`,
+                        color: `00ff48`,
+                        description: `**User:** <@${user.id}>
+**Staff:** <@${member.id}>
+**Reason:** ${args.slice(1).join(" ")}`
+                    }})
+                    setTimeout(function() {
+                        user.roles.add(role)
+                    }, 1000);
+                } else {
+                    message.channel.send({embed: {
+                        title: `Command syntax failed!`,
+                        color: `fc0303`,
+                        description: `Please do ${prefix}mute (Member) (Reason)`
+                    }});
+                }
+            } else {
+                message.channel.send({embed: {
+                    title: `Command syntax failed!`,
+                    color: `fc0303`,
+                    description: `Please do ${prefix}mute (Member) (Reason)`
+                }});
+            }
+        }
+    }
+    if (cmd === `${prefix}ban`) {
+        const { member, mentions } = message
+
+        if (
+            member.hasPermission('ADMINISTRATOR') ||
+            member.hasPermission('BAN_MEMBERS')
+        ) {
+            let user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+            if(user) {
+                if(args.slice(1).join(" ")) {
+                    user.user.send(`You have been banned from **${message.guild.name}** server!
+**Reason:** ${args.slice(1).join(" ")}`)
+                    const targetMember = message.guild.members.cache.get(user.id)
+                    message.channel.send({embed: {
+                        title: `User Banned`,
+                        color: `00ff48`,
+                        description: `**User:** <@${user.id}>
+**Staff:** <@${member.id}>
+**Reason:** ${args.slice(1).join(" ")}`
+                    }})
+                    setTimeout(function() {
+                        targetMember.ban({reason: `${args.slice(1).join(" ")}`})
+                    }, 1000);
+                } else {
+                    message.channel.send({embed: {
+                        title: `Command syntax failed!`,
+                        color: `fc0303`,
+                        description: `Please do ${prefix}ban (Member) (Reason)`
+                    }});
+                }
+            } else {
+                message.channel.send({embed: {
+                    title: `Command syntax failed!`,
+                    color: `fc0303`,
+                    description: `Please do ${prefix}ban (Member) (Reason)`
+                }});
+            }
+        }
+    }
+    if (cmd === `${prefix}warn`) {
+        const { member, mentions } = message
+
+        if (
+            member.hasPermission('ADMINISTRATOR') ||
+            member.hasPermission('BAN_MEMBERS')
+        ) {
+            let user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+            if(user) {
+                if(args.slice(1).join(" ")) {
+                    user.user.send(`You have been warned from **${message.guild.name}** server!
+**Reason:** ${args.slice(1).join(" ")}`)
+                    const targetMember = message.guild.members.cache.get(user.id)
+                    message.channel.send({embed: {
+                        title: `User Warned`,
+                        color: `00ff48`,
+                        description: `**User:** <@${user.id}>
+**Staff:** <@${member.id}>
+**Reason:** ${args.slice(1).join(" ")}`
+                    }})
+                } else {
+                    message.channel.send({embed: {
+                        title: `Command syntax failed!`,
+                        color: `fc0303`,
+                        description: `Please do ${prefix}warn (Member) (Reason)`
+                    }});
+                }
+            } else {
+                message.channel.send({embed: {
+                    title: `Command syntax failed!`,
+                    color: `fc0303`,
+                    description: `Please do ${prefix}warn (Member) (Reason)`
+                }});
+            }
         }
     }
     if(cmd === `${prefix}lock`) {
@@ -208,45 +465,6 @@ Reason: ${args.slice(1).join(" ")}`,
             if(isNaN(slowmode))return message.channel.send(`That is not a number!`)
             message.channel.setRateLimitPerUser(slowmode)
             message.channel.send(`Slowmode set to ${slowmode}`)
-        }
-    }
-    if (cmd === `${prefix}kick`) {
-        const { member, mentions } = message
-
-        if (
-            member.hasPermission('ADMINISTRATOR') ||
-            member.hasPermission('KICK_MEMBERS')
-        ) {
-            let user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-            const reason = args.slice(1).join(" ")
-            if (user) {
-                if(!args.slice(1).join(" ")) return message.channel.send({embed: {
-                    title: `Command syntax failed!`,
-                    description: `Please do ${prefix}kick (mention player or ID) (reason)`
-                }});
-                const targetMember = message.guild.members.cache.get(user.id)
-                user.user.send({embed: {
-                    description: `You have been kicked from the server.`
-                }}).catch(() => message.channel.send({embed: {
-                    description: `<@${user.id}> has their DM's disabled. Could not send a punishment alert.`
-                }}))
-                setTimeout(function() {
-                    targetMember.kick(`${reason}`)
-                    message.channel.send({embed: {
-                        description: `<@${user.id}> has been successfully kicked from the server.`
-                    }});
-                }, 100);
-            } else{
-                message.channel.send({embed: {
-                    title: `Command syntax failed!`,
-                    description: `Please do ${prefix}kick (mention player or ID) (reason)`
-                }});
-            }
-        } else{
-            message.channel.send({embed: {
-                title: `Permission error`,
-                description: `<@${member.id}>, you do not have permission to preform ${prefix}kick. If this is in error, please contact <@325090475839324161> (The bot developer).`
-            }});
         }
     }
 });
