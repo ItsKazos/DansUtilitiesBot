@@ -6,8 +6,8 @@ const { Player } = require("discord-music-player");
 const player = new Player(bot);
 const ms = require('ms')
 bot.player = player;
-
-
+var money = require('discord-money');
+var rn = require('random-number')
 bot.on("ready", async () => {
     console.log(`${bot.user.username} is ready for action!`);
     bot.user.setActivity('you', { type: 'WATCHING' });
@@ -35,6 +35,19 @@ bot.on("message", async message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
+    var options = {
+        min:  0
+      , max:  25
+      , integer: true
+    }
+    randommoney = rn(options)
+    money.updateBal(message.author.id, randommoney)
+    if (cmd === `${prefix}balance`) {
+        const { member, mentions } = message
+        money.fetchBal(message.author.id).then((i) => {
+            message.channel.send(`**Balance:** $${i.money}`);
+        })
+    }
     if (cmd === `${prefix}mhelp`) {
         const { member, mentions } = message
         if(!member.hasPermission("ADMINISTRATOR")) {

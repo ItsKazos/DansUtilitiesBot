@@ -11,9 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "better-discord-antispam": "^2.0.0",
+    "discord-money": "^0.2.0",
     "discord-music-player": "^5.0.4",
     "discord.js": "^12.3.1",
     "ms": "^2.1.2",
-    "opusscript": "0.0.7"
+    "opusscript": "0.0.7",
+    "random-number": "0.0.9"
   }
 }
