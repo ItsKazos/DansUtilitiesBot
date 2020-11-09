@@ -1,3 +1,5 @@
+const ms = require('ms')
+
 module.exports = {
     name: `>tempban`,
     category: `moderation`,
