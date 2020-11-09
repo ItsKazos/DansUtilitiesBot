@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ascii-table": "0.0.9",
     "better-discord-antispam": "^2.0.0",
+    "discord-giveaways": "^4.2.1",
     "discord-minigames": "^1.1.9",
     "discord-money": "^0.2.0",
     "discord-music-player": "^5.0.4",
