@@ -10,6 +10,31 @@ const minigames = require('discord-minigames')
 const fs = require('fs')
 bot.player = player;
 const { GiveawaysManager } = require("discord-giveaways")
+const Twitter = require('twit');
+const activities_list = [
+    "with the &help command.", 
+    "with the developers console",
+    "with some code", 
+    "with JavaScript"
+    ];
+
+const twitterConf = {
+    consumer_key: 'UY7U6RTA4H7eFLtvVAF4TvJpE',
+    consumer_secret: '2WuACl6Xc037FfYdZ0D4xxljYpskfSEJFpEy20FzDPZHCqNDN4',
+    access_token: '1328094862877593601-2MSkFMNbyKNoWdnCB5qUn5wnC2BpE5',
+    access_token_secret: 'JNWJ7cAlVm8ZTlhu2fTEdMBObj0xDu8Ufjchy9miTarMW',
+}
+const twitterClient = new Twitter(twitterConf);
+const twitterchannel = '777655386550566963';
+const stream = twitterClient.stream('statuses/filter', {
+    follow: '1328094862877593601',
+});
+
+stream.on('tweet', tweet => {
+    const twitterMessage = `${tweet.user.name} (@${tweet.user.screen_name}) tweeted this: https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`
+    bot.channels.cache.get(twitterchannel).send(twitterMessage);
+    return false;
+});
 
 bot.commands = new Collection();
 bot.aliases = new Collection();
@@ -30,7 +55,10 @@ bot.giveawaysManager = new GiveawaysManager(bot, {
 });
 bot.on("ready", async () => {
     console.log(`${bot.user.username} is ready for action!`);
-    bot.user.setActivity('you', { type: 'WATCHING' });
+    setInterval(() => {
+        const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
+        bot.user.setActivity(activities_list[index]); // sets bot's activities to one of the phrases in the arraylist.
+    }, 10000); // Runs this every 10 seconds.
     antispam(bot, {
         limitUntilWarn: 3,
         limitUntilMuted: 5,
@@ -39,7 +67,7 @@ bot.on("ready", async () => {
         muteMessage: "you have been muted for 1 hour for spamming.",
         maxDuplicatesWarning: 5,
         maxDuplicatesMute: 10,
-        ignoredRoles: ["• Moderation Staff"],
+        ignoredRoles: ["Trainee Moderator", "Moderator", "Bot Developer", "Head Moderator", "Administrator", "Admin Perms", "Co Owner", "Owner"],
         ignoredMembers: ["Clyde#0000"],
         mutedRole: "Muted",
         timeMuted: 1000 * 3600,
