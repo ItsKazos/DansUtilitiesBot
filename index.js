@@ -74,11 +74,7 @@ bot.on("ready", async () => {
         if (activities_list[index] === `your messages` || activities_list[index] === `giveaways` || activities_list === ``) {
             bot.user.setActivity(activities_list[index], { type: "WATCHING"});
         } else {
-            if (activities_list[index] === `:D`) {
-                bot.user.setActivity(activities_list[index], { type: "CUSTOM_STATUS" });
-            } else {
-                bot.user.setActivity(activities_list[index]);
-            }
+            bot.user.setActivity(activities_list[index]);
         }
     }, 10000); // Runs this every 10 seconds.
     antispam(bot, {
