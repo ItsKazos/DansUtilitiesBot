@@ -22,6 +22,7 @@
     "fetch": "^1.1.0",
     "fs": "0.0.1-security",
     "ms": "^2.1.2",
+    "mysql": "^2.18.1",
     "node-fetch": "^2.6.1",
     "opusscript": "0.0.7",
     "pixabay-api": "^1.0.4",

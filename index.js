@@ -8,6 +8,7 @@ const player = new Player(bot);
 const ms = require('ms')
 const minigames = require('discord-minigames')
 const fs = require('fs')
+var mysql = require('mysql');
 bot.player = player;
 const { GiveawaysManager } = require("discord-giveaways")
 const Twitter = require('twit');
@@ -18,6 +19,18 @@ const activities_list = [
     "with JavaScript"
     ];
 
+var con = mysql.createConnection({
+    host: "na01-sql.pebblehost.com",
+    user: "customer_147102_discord",
+    password: "T!8jfFr$b#Xo!qn~otpb",
+    database: "customer_147102_discord"
+})
+
+con.connect(err => {
+    if(err) throw err;
+    console.log("connected to the database!")
+    con.query("SHOW TABLES", console.log);
+})
 const twitterConf = {
     consumer_key: 'UY7U6RTA4H7eFLtvVAF4TvJpE',
     consumer_secret: '2WuACl6Xc037FfYdZ0D4xxljYpskfSEJFpEy20FzDPZHCqNDN4',
