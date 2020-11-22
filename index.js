@@ -135,6 +135,12 @@ bot.on("message", async message => {
                     }
                     con.query(sql, console.log())
                 })
+                setTimeout(function() {
+                    con.query(`SELECT * FROM swearcount WHERE id = '${message.author.id}'`, (err,rows) => {
+                        sql = `UPDATE swearcount SET swearcount = '0' WHERE id = '${message.author.id}'`
+                        con.query(sql, console.log())
+                    })
+                }, 3600000)
             }
         }
     }
@@ -169,6 +175,12 @@ bot.on("message", async message => {
                     }
                     con.query(sql, console.log())
                 })
+                setTimeout(function() {
+                    con.query(`SELECT * FROM pingowners WHERE id = '${message.author.id}'`, (err,rows) => {
+                        sql = `UPDATE pingowners SET pingowners = '0' WHERE id = '${message.author.id}'`
+                        con.query(sql, console.log())
+                    })
+                }, 3600000)
             }
         }
     }
