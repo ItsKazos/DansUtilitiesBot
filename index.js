@@ -101,9 +101,37 @@ bot.on("message", async message => {
     const { member, mentions } = message
     for (let i = 0; i < noWords["blockedWords"].length; i++) {
         if (msg.includes(noWords["blockedWords"] [i])) {
-            if(!member.hasPermission('ADMINISTRATOR') && !member.hasPermission('KICK_MEMBERS')) {
-                message.delete()
-                return message.channel.send(`You aren't allowed to say that.`);
+            if (!msg.includes("bypass")) {
+                if(!member.hasPermission('ADMINISTRATOR') && !member.hasPermission('KICK_MEMBERS')) {
+                    message.delete()
+                    con.query(`CREATE TABLE IF NOT EXISTS swearcount (id TEXT, swearcount TEXT)`)
+                    con.query(`SELECT * FROM swearcount WHERE id = '${message.author.id}'`, (err,rows) => {
+                        if(err) throw err;
+                
+                        let sql;
+                        
+                        if(rows.length < 1) {
+                            sql = `INSERT INTO swearcount (id, swearcount) VALUES ('${message.author.id}', '1')`
+                            message.channel.send(`You aren't allowed to say that.`);
+                        } else {
+                            let swearcount = parseInt(rows[0].swearcount)
+                            sql = `UPDATE swearcount SET swearcount = ${Math.floor(swearcount + 1)} WHERE id = '${message.author.id}'`
+                            if (Math.floor(swearcount + 1) >= 2) {
+                                message.channel.send("You have been auto-muted for 1 hour for swearing multiple times")
+                                let role = message.guild.roles.cache.find(r => r.name === "Muted");
+                                let user = message.guild.members.cache.get(message.author.id)
+                                user.roles.add(role)
+                                sql = `UPDATE swearcount SET swearcount = '0' WHERE id = '${message.author.id}'`
+                                setTimeout(function() {
+                                    user.roles.remove(role)
+                                }, 3600000);
+                            } else {
+                                message.channel.send(`You aren't allowed to say that.`);
+                            }
+                        }
+                        con.query(sql, console.log())
+                    })
+                }
             }
         }
     }
@@ -111,7 +139,33 @@ bot.on("message", async message => {
         if (msg.includes(noWords["noTag"] [i])) {
             if(!member.hasPermission('ADMINISTRATOR') && !member.hasPermission('KICK_MEMBERS')) {
                 message.delete()
-                return message.channel.send(`You aren't allowed to tag owners.`);
+                con.query(`CREATE TABLE IF NOT EXISTS pingowners (id TEXT, pingowners TEXT)`)
+                con.query(`SELECT * FROM pingowners WHERE id = '${message.author.id}'`, (err,rows) => {
+                    if(err) throw err;
+            
+                    let sql;
+                    
+                    if(rows.length < 1) {
+                        sql = `INSERT INTO pingowners (id, pingowners) VALUES ('${message.author.id}', '1')`
+                        message.channel.send(`You aren't allowed to tag owners.`);
+                    } else {
+                        let pingowners = parseInt(rows[0].pingowners)
+                        sql = `UPDATE pingowners SET pingowners = ${Math.floor(pingowners + 1)} WHERE id = '${message.author.id}'`
+                        if (Math.floor(pingowners + 1) >= 2) {
+                            message.channel.send("You have been auto-muted for 1 hour for pinging owners multiple times")
+                            let role = message.guild.roles.cache.find(r => r.name === "Muted");
+                            let user = message.guild.members.cache.get(message.author.id)
+                            user.roles.add(role)
+                            sql = `UPDATE pingowners SET pingowners = '0' WHERE id = '${message.author.id}'`
+                            setTimeout(function() {
+                                user.roles.remove(role)
+                            }, 3600000);
+                        } else {
+                            message.channel.send(`You aren't allowed to tag owners. ${pingowners + 1}`);
+                        }
+                    }
+                    con.query(sql, console.log())
+                })
             }
         }
     }
@@ -126,18 +180,6 @@ bot.on("message", async message => {
 
     if (command)
         command.run(bot, message, args)
-    if (cmd === `>battle`) {
-        if (!args[0]) {
-            return message.channel.send("Mention a player!")
-        }
-        minigames.startBattle(member, message)
-    }
-    if (cmd === `>ispy`) {
-        if (!args[0]) {
-            return message.channel.send("Mention a player!")
-        }
-        minigames.startISpy(member, message)
-    }
     
 
 

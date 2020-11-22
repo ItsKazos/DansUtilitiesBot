@@ -46,7 +46,7 @@ module.exports = {
                             }})
                         } else {
                             let previouswarns = parseInt(rows[0].previouswarns)
-                            sql = `UPDATE warns SET previouswarns = ${Math.floor(previouswarns + 1)} WHERE id = '${message.author.id}'`
+                            sql = `UPDATE warns SET previouswarns = ${Math.floor(previouswarns + 1)} WHERE id = '${user.id}'`
                             message.channel.send({embed: {
                                 title: `User Warned`,
                                 color: `00ff48`,
