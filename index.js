@@ -96,10 +96,95 @@ bot.on("ready", async () => {
 bot.on("message", async message => {
     if (message.author.bot) return;
     if (message.channel.type === "dm") {
-        botdms = bot.channels.cache.get("775051348897955841");
-        botdms.send(`**Direct Message from:** <@${message.author.id}>
-**Message Content:**` + ' ``' + message.content + '``')
-        message.channel.send("Your modmail was successfully sent to the moderators of this server.")
+        const { member, mentions } = message
+        let messageArray = message.content.split(" ");
+        let cmd = messageArray[0];
+        let args = messageArray.slice(1);
+        let embedSyntax = new discord.MessageEmbed()
+        .setTitle("**Modmail Menu**")
+        .setDescription(`Modmail menu for Dan's Hangout
+
+appeal - Appeal a punishment (appeal <type> <message>, e.g. appeal ban I'm sorry for what I did. I'll never do it again...)
+report user - Report a user (report user <member ID> <reason>, e.g. report user 325090475839324161 noob)
+report staff - Report a staff (report staff <staff ID> <reason>, e.g. report user 325090475839324161 False Banning)
+request role - Request a role (request role <role name without spaces> <reason>), e.g. request role artist posting enough personal art)`)
+        if(cmd === `appeal`) {
+            if(args[0] === `ban`) {
+                if(!args[1]) return message.channel.send("Actually type an appeal. Smh.")
+                message.channel.send("Appeal successfully sent!")
+                appeal = bot.channels.cache.get("779776077115162654");
+                appeal.send(`**Ban appeal from:** <@${message.author.id}>
+**Appeal:**` + ' ``' + args.slice(1).join(" ") + '``')
+            } else {
+                if (args[0] === `mute`) {
+                    if(!args[1]) return message.channel.send("Actually type an appeal. Smh.")
+                    message.channel.send("Appeal successfully sent!")
+                    appeal = bot.channels.cache.get("779776077115162654");
+                    appeal.send(`**Mute appeal from:** <@${message.author.id}>
+**Appeal:**` + ' ``' + args.slice(1).join(" ") + '``')
+                } else {
+                    if(args[0] === `kick`) {
+                        if(!args[1]) return message.channel.send("Actually type an appeal. Smh.")
+                        message.channel.send("Appeal successfully sent!")
+                        appeal = bot.channels.cache.get("779776077115162654");
+                        appeal.send(`**Kick appeal from:** <@${message.author.id}>
+**Appeal:**` + ' ``' + args.slice(1).join(" ") + '``')
+                    } else {
+                        if(args[0] === `warn`) {
+                            if(!args[1]) return message.channel.send("Actually type an appeal. Smh.")
+                            appeal = bot.channels.cache.get("779776077115162654");
+                            appeal.send(`**Warn appeal from:** <@${message.author.id}>
+**Appeal:**` + ' ``' + args.slice(1).join(" ") + '``')
+                            message.channel.send("Appeal successfully sent!")
+                        } else {
+                            message.channel.send(args[0] + " is not a real punishment. Please try ban, mute, kick or warn.")
+                        }
+                    }
+                }
+            }
+        } else {
+            if(cmd === `report`) { 
+                if (args[0] === `user`) {
+                    let user = args[1]
+                    if(!user) return message.channel.send("Actually mention a player. Smh.")
+                    if(!args[2]) return message.channel.send("Actually type a report. Smh.")
+                    report = bot.channels.cache.get("779776276780023859");
+                    report.send(`**User report from:** <@${message.author.id}>
+**Member:** <@${user.id}>
+**Report:**` + ' ``' + args.slice(2).join(" ") + '``')
+                    message.channel.send("Report successfully sent!")
+
+                } else {
+                    if (args[0] === `staff`) {
+                        let user = args[1]
+                        if(!user) return message.channel.send("Actually mention a staff. Smh.")
+                        if(!args[2]) return message.channel.send("Actually type a report. Smh.")
+                        report = bot.channels.cache.get("779776146048811028");
+                        report.send(`**User report from:** <@${message.author.id}>
+**Member:** <@${user.id}>
+**Report:**` + ' ``' + args.slice(2).join(" ") + '``')
+                        message.channel.send("Report successfully sent!")
+                    } else {
+                        message.channel.send(embedSyntax)
+                    }
+                }
+            } else {
+                if (cmd === `request`) {
+                    if (args[0] === `role`) {
+                        if(!args[2]) return message.channel.send("Actually type a reason. Smh.")
+                        report = bot.channels.cache.get("779776221302620180");
+                        report.send(`**User report from:** <@${message.author.id}>
+**Role:** ${args[1]}
+**Report:**` + ' ``' + args.slice(2).join(" ") + '``')
+                        message.channel.send("Role request successfully sent!")
+                    } else {
+                        message.channel.send(embedSyntax)
+                    }
+                } else {
+                    message.channel.send(embedSyntax)
+                }
+            }
+        }
     }
     var noWords = JSON.parse(fs.readFileSync("./words/blockedWords.json"));
     var msg = message.content.toLowerCase();
