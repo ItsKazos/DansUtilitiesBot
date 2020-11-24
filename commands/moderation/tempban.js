@@ -2,6 +2,7 @@ const ms = require('ms')
 
 module.exports = {
     name: `>tempban`,
+    aliases: ['>tb', '>tban'],
     category: `moderation`,
     description: `tempban`,
     run: async (bot, message, args) => {

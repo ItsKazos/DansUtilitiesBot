@@ -2,6 +2,7 @@ const ms = require('ms')
 
 module.exports = {
     name: `>tempmute`,
+    aliases: ['>tm', '>tmute'],
     category: `moderation`,
     description: `tempmute`,
     run: async (bot, message, args) => {

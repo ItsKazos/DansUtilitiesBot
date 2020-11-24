@@ -1,5 +1,6 @@
 module.exports = {
     name: ">slowmode",
+    aliases: ['>s', '>slow'],
     category: "moderation",
     description: "Sets slowmode",
     run: async (bot, message, args) => {

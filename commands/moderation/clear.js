@@ -1,5 +1,6 @@
 module.exports = {
     name: `>clear`,
+    aliases: ['>purge', '>c'],
     category: `moderation`,
     description: `clear`,
     run: async (bot, message, args) => {

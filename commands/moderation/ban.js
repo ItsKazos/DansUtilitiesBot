@@ -1,5 +1,6 @@
 module.exports = {
     name: `>ban`,
+    aliases: ['>b', '>banplayer'],
     category: `moderation`,
     description: `Bans a user`,
     run: async (bot, message, args) => {

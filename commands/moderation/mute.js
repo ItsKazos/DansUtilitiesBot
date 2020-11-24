@@ -1,5 +1,6 @@
 module.exports = {
     name: `>mute`,
+    aliases: ['>shut', '>m'],
     category: `moderation`,
     description: `Mutes a user`,
     run: async (bot, message, args) => {
