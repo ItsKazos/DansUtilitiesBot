@@ -13,7 +13,8 @@ module.exports = {
             if(user) {
                 if(args.slice(1).join(" ")) {
                     user.user.send(`You have been banned from **${message.guild.name}** server!
-**Reason:** ${args.slice(1).join(" ")}`).catch(message.channel.send(`<@${user.id}> has their DM's disabled.`))
+**Reason:** ${args.slice(1).join(" ")}
+**Appeal in:** https://discord.gg/aKfcKs2RQg`).catch(message.channel.send(`<@${user.id}> has their DM's disabled.`))
                     const targetMember = message.guild.members.cache.get(user.id)
                     message.channel.send({embed: {
                         title: `User Banned`,

@@ -28,7 +28,8 @@ module.exports = {
                 if(args.slice(2).join(" ")) {
                     user.user.send(`You have been banned from ${message.guild.name}!
 **Reason:** ${args.slice(2).join(" ")}
-**Duration:** ${args[1]}`).catch(message.channel.send(`<@${user.id}> has their DM's disabled.`))
+**Duration:** ${args[1]}`).catch(message.channel.send(`<@${user.id}> has their DM's disabled.
+**Appeal in:** https://discord.gg/aKfcKs2RQg`))
                     message.channel.send({embed: {
                         title: `User Temporarily Banned`,
                         color: `00ff48`,
