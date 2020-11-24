@@ -150,7 +150,7 @@ request role - Request a role (request role <role name without spaces> <reason>)
                     if(!args[2]) return message.channel.send("Actually type a report. Smh.")
                     report = bot.channels.cache.get("779776276780023859");
                     report.send(`**User report from:** <@${message.author.id}>
-**Member:** <@${user.id}>
+**Member:** ${user}
 **Report:**` + ' ``' + args.slice(2).join(" ") + '``')
                     message.channel.send("Report successfully sent!")
 
@@ -161,7 +161,7 @@ request role - Request a role (request role <role name without spaces> <reason>)
                         if(!args[2]) return message.channel.send("Actually type a report. Smh.")
                         report = bot.channels.cache.get("779776146048811028");
                         report.send(`**User report from:** <@${message.author.id}>
-**Member:** <@${user.id}>
+**Member:** ${user}
 **Report:**` + ' ``' + args.slice(2).join(" ") + '``')
                         message.channel.send("Report successfully sent!")
                     } else {
