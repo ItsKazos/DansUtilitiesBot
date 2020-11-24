@@ -1,9 +1,7 @@
-const ms = require('ms')
-
 module.exports = {
-    name: `>tempmute`,
+    name: `>m`,
     category: `moderation`,
-    description: `tempmute`,
+    description: `Mutes a user`,
     run: async (bot, message, args) => {
         const { member, mentions } = message
 
@@ -16,45 +14,32 @@ module.exports = {
             if (!role) {
                 return message.channel.send("Couldn't find the muted role!");
             }
-            let timestamp = args[1]
-            if (!timestamp) {
-                return message.channel.send({embed: {
-                    title: `Command syntax failed!`,
-                    color: `fc0303`,
-                    description: `Please do >tempmute (Member) (Timestamp) (Reason)`
-                }});
-            }
             if(user) {
                 if(args.slice(1).join(" ")) {
                     user.user.send(`You have been muted from ${message.guild.name}!
-**Reason:** ${args.slice(2).join(" ")}
-**Duration:** ${args[1]}`).catch(message.channel.send(`<@${user.id}> has their DM's disabled.`))
+**Reason:** ${args.slice(1).join(" ")}`).catch(message.channel.send(`<@${user.id}> has their DM's disabled.`))
                     message.channel.send({embed: {
-                        title: `User Temporarily Muted`,
+                        title: `User Muted`,
                         color: `00ff48`,
                         description: `**User:** <@${user.id}>
 **Staff:** <@${member.id}>
-**Reason:** ${args.slice(2).join(" ")}
-**Duration:** ${args[1]}`
+**Reason:** ${args.slice(1).join(" ")}`
                     }})
                     setTimeout(function() {
                         user.roles.add(role)
                     }, 1000);
-                    setTimeout(function() {
-                        user.roles.remove(role)
-                    }, ms(timestamp));
                 } else {
                     message.channel.send({embed: {
                         title: `Command syntax failed!`,
                         color: `fc0303`,
-                        description: `Please do >tempmute (Member) (Timestamp) (Reason)`
+                        description: `Please do >mute (Member) (Reason)`
                     }});
                 }
             } else {
                 message.channel.send({embed: {
                     title: `Command syntax failed!`,
                     color: `fc0303`,
-                    description: `Please do >tempmute (Member) (Timestamp) (Reason)`
+                    description: `Please do >mute (Member) (Reason)`
                 }});
             }
         }

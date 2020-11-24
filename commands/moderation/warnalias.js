@@ -13,7 +13,7 @@ con.connect(err => {
 })
 
 module.exports = {
-    name: `>warn`,
+    name: `>w`,
     category: `moderation`,
     description: `Warns a user`,
     run: async (bot, message, args) => {

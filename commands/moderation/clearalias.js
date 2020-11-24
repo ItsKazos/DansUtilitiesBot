@@ -1,5 +1,5 @@
 module.exports = {
-    name: `>clear`,
+    name: `>c`,
     category: `moderation`,
     description: `clear`,
     run: async (bot, message, args) => {

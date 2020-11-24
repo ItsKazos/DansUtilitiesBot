@@ -1,9 +1,9 @@
 const ms = require('ms')
 
 module.exports = {
-    name: `>tempban`,
+    name: `>tm`,
     category: `moderation`,
-    description: `tempban`,
+    description: `tempmute`,
     run: async (bot, message, args) => {
         const { member, mentions } = message
 
@@ -21,42 +21,40 @@ module.exports = {
                 return message.channel.send({embed: {
                     title: `Command syntax failed!`,
                     color: `fc0303`,
-                    description: `Please do >tempban (Member) (Timestamp) (Reason)`
+                    description: `Please do >tempmute (Member) (Timestamp) (Reason)`
                 }});
             }
             if(user) {
-                if(args.slice(2).join(" ")) {
-                    user.user.send(`You have been banned from ${message.guild.name}!
+                if(args.slice(1).join(" ")) {
+                    user.user.send(`You have been muted from ${message.guild.name}!
 **Reason:** ${args.slice(2).join(" ")}
-**Duration:** ${args[1]}`).catch(message.channel.send(`<@${user.id}> has their DM's disabled.
-**Appeal in:** https://discord.gg/aKfcKs2RQg`))
+**Duration:** ${args[1]}`).catch(message.channel.send(`<@${user.id}> has their DM's disabled.`))
                     message.channel.send({embed: {
-                        title: `User Temporarily Banned`,
+                        title: `User Temporarily Muted`,
                         color: `00ff48`,
                         description: `**User:** <@${user.id}>
 **Staff:** <@${member.id}>
-**Reason:** ${args.slice(1).join(" ")}
+**Reason:** ${args.slice(2).join(" ")}
 **Duration:** ${args[1]}`
                     }})
-                    const targetMember = message.guild.members.cache.get(user.id)
                     setTimeout(function() {
-                        targetMember.ban({reason: `${args.slice(2).join(" ")}`})
+                        user.roles.add(role)
                     }, 1000);
                     setTimeout(function() {
-                        message.guild.members.unban(user.id)
+                        user.roles.remove(role)
                     }, ms(timestamp));
                 } else {
                     message.channel.send({embed: {
                         title: `Command syntax failed!`,
                         color: `fc0303`,
-                        description: `Please do >tempban (Member) (Timestamp) (Reason)`
+                        description: `Please do >tempmute (Member) (Timestamp) (Reason)`
                     }});
                 }
             } else {
                 message.channel.send({embed: {
                     title: `Command syntax failed!`,
                     color: `fc0303`,
-                    description: `Please do >tempban (Member) (Timestamp) (Reason)`
+                    description: `Please do >tempmute (Member) (Timestamp) (Reason)`
                 }});
             }
         }

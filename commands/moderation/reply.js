@@ -2,7 +2,6 @@ const discord = require("discord.js");
 
 module.exports = {
     name: `>reply`,
-    aliases: ['>updatemodlogstatus', '>r'],
     category: `moderation`,
     description: `reply`,
     run: async (bot, message, args) => {
