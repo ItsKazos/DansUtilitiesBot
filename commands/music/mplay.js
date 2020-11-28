@@ -1,4 +1,6 @@
-let prefix = config.prefix;
+
+const config = require("./config.json")
+let prefix = config.prefix;nfig.prefix;
 
 module.exports = {
     name: `${prefix}mplay`,

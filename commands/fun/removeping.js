@@ -1,5 +1,6 @@
-let prefix = config.prefix;
 
+const config = require("./config.json")
+let prefix = config.prefix;
 module.exports = {
     name: `${prefix}removeping`,
     category: `fun`,

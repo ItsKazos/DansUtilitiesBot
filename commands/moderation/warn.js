@@ -12,6 +12,7 @@ con.connect(err => {
     con.query("SHOW TABLES", console.log);
 })
 
+const config = require("./config.json")
 let prefix = config.prefix;
 
 module.exports = {

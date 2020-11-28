@@ -1,7 +1,7 @@
 const discord = require("discord.js");
 
+const config = require("./config.json")
 let prefix = config.prefix;
-
 module.exports = {
     name: `${prefix}reply`,
     category: `moderation`,

@@ -1,5 +1,5 @@
+const config = require("./config.json")
 let prefix = config.prefix;
-
 module.exports = {
     name: `${prefix}addping`,
     category: `fun`,
