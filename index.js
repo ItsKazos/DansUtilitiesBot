@@ -284,7 +284,7 @@ request role - Request a role (request role <role name without spaces> <reason>)
 
 
     if (message.channel.id === `774816409133645895` || message.channel.id === `762110786335277066`) {
-        if(cmd === `>verify`) {
+        if(cmd === `${prefix}verify`) {
             if (args[0] === `E39h2kg3A`) {
                 const { member, mentions } = message
                 let role = message.guild.roles.cache.find(r => r.name === "Member");

@@ -1,5 +1,7 @@
+let prefix = config.prefix;
+
 module.exports = {
-    name: ">slowmode",
+    name: `${prefix}slowmode`,
     category: "moderation",
     description: "Sets slowmode",
     run: async (bot, message, args) => {

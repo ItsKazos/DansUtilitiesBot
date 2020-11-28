@@ -1,5 +1,7 @@
+let prefix = config.prefix;
+
 module.exports = {
-    name: `>mskip`,
+    name: `${prefix}mskip`,
     category: `music`,
     description: `mskip`,
     run: async (bot, message, args) => {

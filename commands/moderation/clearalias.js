@@ -1,5 +1,7 @@
+let prefix = config.prefix;
+
 module.exports = {
-    name: `>c`,
+    name: `${prefix}c`,
     category: `moderation`,
     description: `clear`,
     run: async (bot, message, args) => {

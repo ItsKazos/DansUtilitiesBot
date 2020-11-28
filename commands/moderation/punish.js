@@ -12,8 +12,10 @@ con.connect(err => {
     con.query("SHOW TABLES", console.log);
 })
 
+let prefix = config.prefix;
+
 module.exports = {
-    name: `>punish`,
+    name: `${prefix}punish`,
     category: `moderation`,
     description: `Punishes a user`,
     run: async (bot, message, args) => {

@@ -1,7 +1,9 @@
 const { MessageReaction } = require("discord.js");
 
+let prefix = config.prefix;
+
 module.exports = {
-    name: ">prefix",
+    name: `${prefix}prefix`,
     category: "info",
     description: "Gives prefix",
     run: async (bot, message, args) => {

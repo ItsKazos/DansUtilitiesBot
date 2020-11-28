@@ -1,5 +1,7 @@
+let prefix = config.prefix;
+
 module.exports = {
-    name: ">ping",
+    name: `${prefix}ping`,
     category: "info",
     description: "Returns ping",
     run: async (bot, message, args) => {

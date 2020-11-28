@@ -1,7 +1,9 @@
 const discord = require("discord.js");
 
+let prefix = config.prefix;
+
 module.exports = {
-    name: `>mhelp`,
+    name: `${prefix}mhelp`,
     category: `music`,
     description: `mhelp`,
     run: async (bot, message, args) => {

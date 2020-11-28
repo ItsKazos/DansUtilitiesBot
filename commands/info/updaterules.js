@@ -1,7 +1,9 @@
 const discord = require("discord.js");
 
+let prefix = config.prefix;
+
 module.exports = {
-    name: ">updaterules",
+    name: `${prefix}updaterules`,
     category: "info",
     description: "Returns new rules",
     run: async (bot, message, args) => {

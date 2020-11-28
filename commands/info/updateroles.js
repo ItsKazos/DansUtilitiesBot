@@ -1,7 +1,9 @@
 const discord = require("discord.js");
 
+let prefix = config.prefix;
+
 module.exports = {
-    name: ">updateroles",
+    name: `${prefix}updateroles`,
     category: "info",
     description: "Returns new roles",
     run: async (bot, message, args) => {

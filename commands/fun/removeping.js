@@ -1,5 +1,7 @@
+let prefix = config.prefix;
+
 module.exports = {
-    name: `>removeping`,
+    name: `${prefix}removeping`,
     category: `fun`,
     description: `removeping`,
     run: async (bot, message, args) => {

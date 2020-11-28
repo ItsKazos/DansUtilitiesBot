@@ -1,8 +1,10 @@
 const discord = require("discord.js");
 const randomPuppy = require('random-puppy');
 
+let prefix = config.prefix;
+
 module.exports = {
-    name: `>dog`,
+    name: `${prefix}dog`,
     category: `fun`,
     description: `dog`,
     run: async (bot, message, args) => {
