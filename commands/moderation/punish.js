@@ -28,6 +28,16 @@ module.exports = {
             if (!role) {
                 return message.channel.send("Couldn't find the muted role!");
             }
+            if (user.hasPermission("ADMINISTRATOR")) {
+                return message.channel.send(`You aren't allowed to punish administrators.`)
+            }
+            if(!member.hasPermission("ADMINISTRATOR")) {
+                if(member.hasPermission("KICK_MEMBERS")) {
+                    if(user.hasPermission("KICK_MEMBERS") || user.hasPermission("ADMINISTRATOR")) {
+                        message.channel.send("You aren't allowed to punish staff members!")
+                    }
+                }
+            }
             if(user) {
                 if(args[1] === `1`) {
                     con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
