@@ -15,7 +15,7 @@ con.connect(err => {
 let prefix = config.prefix;
 
 module.exports = {
-    name: `${prefix}punish`,
+    name: `${prefix}warn`,
     category: `moderation`,
     description: `Punishes a user`,
     run: async (bot, message, args) => {
