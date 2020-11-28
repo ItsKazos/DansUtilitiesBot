@@ -206,7 +206,7 @@ request role - Request a role (request role <role name without spaces> <reason>)
                         let swearcount = parseInt(rows[0].swearcount)
                         sql = `UPDATE swearcount SET swearcount = ${Math.floor(swearcount + 1)} WHERE id = '${message.author.id}'`
                         if (Math.floor(swearcount + 1) >= 2) {
-                            message.channel.send("You have been auto-muted for 1 hour for swearing multiple times")
+                            message.channel.send("You have been auto-muted for 1 day for swearing multiple times")
                             let role = message.guild.roles.cache.find(r => r.name === "Muted");
                             let user = message.guild.members.cache.get(message.author.id)
                             user.roles.add(role)
@@ -246,7 +246,7 @@ request role - Request a role (request role <role name without spaces> <reason>)
                         let pingowners = parseInt(rows[0].pingowners)
                         sql = `UPDATE pingowners SET pingowners = ${Math.floor(pingowners + 1)} WHERE id = '${message.author.id}'`
                         if (Math.floor(pingowners + 1) >= 2) {
-                            message.channel.send("You have been auto-muted for 1 hour for pinging owners multiple times")
+                            message.channel.send("You have been auto-muted for 1 day for pinging owners multiple times")
                             let role = message.guild.roles.cache.find(r => r.name === "Muted");
                             let user = message.guild.members.cache.get(message.author.id)
                             user.roles.add(role)
@@ -255,7 +255,7 @@ request role - Request a role (request role <role name without spaces> <reason>)
                                 user.roles.remove(role)
                             }, 3600000);
                         } else {
-                            message.channel.send(`You aren't allowed to tag owners. ${pingowners + 1}`);
+                            message.channel.send(`You aren't allowed to tag owners.`);
                         }
                     }
                     con.query(sql, console.log())
