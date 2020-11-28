@@ -687,7 +687,45 @@ They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this c
                                                                                                     con.query(sql, console.log())
                                                                                                 })
                                                                                             } else {
-                                                                                                message.channel.send("Please do a value between 1 and 19")
+                                                                                                if (args[1].toLowerCase() === `low`) {
+                                                                                                    message.channel.send(`<@${user.id}> has been warned by <@${member.id}> for ` + '``' + `Other (Low Severity)` + '``' + `.
+They now have ` + '``N/A``' + ` warnings in this category, and ` + '``N/A``' + ` total warnings.`)
+                                                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 0d 1h 0m 0s`)
+                                                                                                    user.roles.add(role)
+                                                                                                    setTimeout(function() {
+                                                                                                        user.roles.remove(role)
+                                                                                                    }, 3600 * 1000);
+                                                                                                } else {
+                                                                                                    if(args[1].toLowerCase() === `medium`) {
+                                                                                                        message.channel.send(`<@${user.id}> has been warned by <@${member.id}> for ` + '``' + `Other (Medium Severity)` + '``' + `.
+They now have ` + '``N/A``' + ` warnings in this category, and ` + '``N/A``' + ` total warnings.`)
+                                                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 1d 0h 0m 0s`)
+                                                                                                        user.roles.add(role)
+                                                                                                        setTimeout(function() {
+                                                                                                            user.roles.remove(role)
+                                                                                                        }, 86400 * 1000);
+                                                                                                    } else {
+                                                                                                        if(args[1].toLowerCase() === `high`) {
+                                                                                                            message.channel.send(`<@${user.id}> has been warned by <@${member.id}> for ` + '``' + `Other (High Severity)` + '``' + `.
+They now have ` + '``N/A``' + ` warnings in this category, and ` + '``N/A``' + ` total warnings.`)
+                                                                                                            message.channel.send(`<@${user.id}> has been auto-muted for 7d 0h 0m 0s`)
+                                                                                                            user.roles.add(role)
+                                                                                                            setTimeout(function() {
+                                                                                                                user.roles.remove(role)
+                                                                                                            }, 604800 * 1000);
+                                                                                                        } else {
+                                                                                                            if (args[1].toLowerCase() === `severe`) {
+                                                                                                                message.channel.send(`<@${user.id}> has been warned by <@${member.id}> for ` + '``' + `Other (Severe Severity)` + '``' + `.
+They now have ` + '``N/A``' + ` warnings in this category, and ` + '``N/A``' + ` total warnings.`)
+                                                                                                                message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
+                                                                                                                const targetMember = message.guild.members.cache.get(user.id)
+                                                                                                                targetMember.ban({reason: `Auto-ban`})
+                                                                                                            } else {
+                                                                                                                message.channel.send("Please do a value between 1 and 19")
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
                                                                                         }
                                                                                     }
                                                                                 }
