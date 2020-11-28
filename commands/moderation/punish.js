@@ -34,7 +34,7 @@ module.exports = {
             if(!member.hasPermission("ADMINISTRATOR")) {
                 if(member.hasPermission("KICK_MEMBERS")) {
                     if(user.hasPermission("KICK_MEMBERS") || user.hasPermission("ADMINISTRATOR")) {
-                        message.channel.send("You aren't allowed to punish staff members!")
+                        return message.channel.send("You aren't allowed to punish staff members!")
                     }
                 }
             }
