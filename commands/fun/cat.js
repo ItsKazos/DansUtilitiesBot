@@ -1,10 +1,8 @@
 const discord = require("discord.js");
 const { get } = require("snekfetch");
-const config = require("./config.json")
-let prefix = config.prefix;
 
 module.exports = {
-    name: `${prefix}cat`,
+    name: `.cat`,
     category: `fun`,
     description: `cat`,
     run: async (bot, message, args) => {

@@ -1,8 +1,6 @@
 
-const config = require("./config.json")
-let prefix = config.prefix;
 module.exports = {
-    name: `${prefix}mskip`,
+    name: `.mskip`,
     category: `music`,
     description: `mskip`,
     run: async (bot, message, args) => {

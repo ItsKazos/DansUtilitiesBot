@@ -1,8 +1,6 @@
 
-const config = require("./config.json")
-let prefix = config.prefix;
 module.exports = {
-    name: `${prefix}slowmode`,
+    name: `.slowmode`,
     category: "moderation",
     description: "Sets slowmode",
     run: async (bot, message, args) => {

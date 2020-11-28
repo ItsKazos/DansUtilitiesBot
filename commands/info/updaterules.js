@@ -1,10 +1,8 @@
 const discord = require("discord.js");
 
-const config = require("./config.json")
-let prefix = config.prefix;
 
 module.exports = {
-    name: `${prefix}updaterules`,
+    name: `.updaterules`,
     category: "info",
     description: "Returns new rules",
     run: async (bot, message, args) => {

@@ -1,9 +1,6 @@
 
-const config = require("./config.json")
-let prefix = config.prefix;nfig.prefix;
-
 module.exports = {
-    name: `${prefix}mplay`,
+    name: `.mplay`,
     category: `music`,
     description: `mplay`,
     run: async (bot, message, args) => {

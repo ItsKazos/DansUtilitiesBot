@@ -1,7 +1,6 @@
-const config = require("./config.json")
-let prefix = config.prefix;
+
 module.exports = {
-    name: `${prefix}addping`,
+    name: `.addping`,
     category: `fun`,
     description: `addping`,
     run: async (bot, message, args) => {

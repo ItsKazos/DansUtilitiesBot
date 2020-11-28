@@ -1,9 +1,6 @@
 
-const config = require("./config.json")
-let prefix = config.prefix;
-
 module.exports = {
-    name: `${prefix}suggest`,
+    name: `.suggest`,
     category: `fun`,
     description: `suggest`,
     run: async (bot, message, args) => {

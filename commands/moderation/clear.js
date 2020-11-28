@@ -1,8 +1,6 @@
 
-const config = require("./config.json")
-let prefix = config.prefix;
 module.exports = {
-    name: `${prefix}clear`,
+    name: `.clear`,
     category: `moderation`,
     description: `clear`,
     run: async (bot, message, args) => {

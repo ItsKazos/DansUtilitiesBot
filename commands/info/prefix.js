@@ -1,10 +1,8 @@
 const { MessageReaction } = require("discord.js");
 
-const config = require("./config.json")
-let prefix = config.prefix;
 
 module.exports = {
-    name: `${prefix}prefix`,
+    name: `.prefix`,
     category: "info",
     description: "Gives prefix",
     run: async (bot, message, args) => {
