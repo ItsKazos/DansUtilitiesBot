@@ -85,7 +85,7 @@ bot.on("ready", async () => {
         muteMessage: "you have been muted for 1 hour for spamming.",
         maxDuplicatesWarning: 5,
         maxDuplicatesMute: 10,
-        ignoredRoles: ["Trainee Moderator", "Moderator", "Bot Developer", "Head Moderator", "Administrator", "Admin Perms", "Co Owner", "Owner"],
+        ignoredRoles: ["🚨┃Trainee Moderator", "🚨┃Moderator", "🤖┃Bot Developer", "🚨┃Head Moderator", "👮‍♂️┃Administrator", "*", "👮‍♂️┃Head Administrator", "👑┃Co Owner", "👑┃Owner"],
         ignoredMembers: ["Clyde#0000"],
         mutedRole: "Muted",
         timeMuted: 1000 * 3600,
