@@ -42,7 +42,7 @@ module.exports = {
                 }
             }
             if(user) {
-                if(args[1] === `1`) {
+                if(args[1] === `1` || args[1].toLowerCase() === `swear`) {
                     con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                     con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                         if(err) throw err;
@@ -127,7 +127,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                         con.query(sql, console.log())
                     })
                 } else {
-                    if(args[1] === `2`) {
+                    if(args[1] === `2` || args[1].toLowerCase() === `ads`) {
                         con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                         con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                             if(err) throw err;
@@ -166,7 +166,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                             con.query(sql, console.log())
                         })
                     } else {
-                        if(args[1] === `3`) {
+                        if(args[1] === `3` || args[1].toLowerCase() === `malicious`) {
                             con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                             con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                 if(err) throw err;
@@ -205,7 +205,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                 con.query(sql, console.log())
                             })
                         } else {
-                            if(args[1] === `4`) {
+                            if(args[1] === `4` || args[1].toLowerCase() === `wrongchannel`) {
                                 con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                 con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                     if(err) throw err;
@@ -290,7 +290,7 @@ You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this ca
                                     con.query(sql, console.log())
                                 })
                             } else {
-                                if(args[1] === `5`) {
+                                if(args[1] === `5` || args[1].toLowerCase() === `toxic`) {
                                     con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                     con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                         if(err) throw err;
@@ -339,7 +339,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                         con.query(sql, console.log())
                                     })
                                 } else {
-                                    if(args[1] === `6`) {
+                                    if(args[1] === `6` || args[1].toLowerCase() === `spam`) {
                                         con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                         con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                             if(err) throw err;
@@ -424,7 +424,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                             con.query(sql, console.log())
                                         })
                                     } else {
-                                            if(args[1] === `7`) {
+                                            if(args[1] === `7` || args[1].toLowerCase() === `nsfw`) {
                                                 con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                                 con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                                     if(err) throw err;
@@ -473,7 +473,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                                     con.query(sql, console.log())
                                                 })
                                             } else {
-                                                if(args[1] === `8`) {
+                                                if(args[1] === `8` || args[1].toLowerCase() === `beg`) {
                                                     con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                                     con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                                         if(err) throw err;
@@ -558,7 +558,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                                         con.query(sql, console.log())
                                                     })
                                                 } else {
-                                                    if(args[1] === `9`) {
+                                                    if(args[1] === `9` || args[1].toLowerCase() === `alt`) {
                                                         con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                                         con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                                             if(err) throw err;
@@ -597,7 +597,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                                             con.query(sql, console.log())
                                                         })
                                                     } else {
-                                                        if(args[1] === `10`) {
+                                                        if(args[1] === `10` || args[1].toLowerCase() === `normalvideos`) {
                                                             con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                                             con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                                                 if(err) throw err;
@@ -683,7 +683,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                                                 con.query(sql, console.log())
                                                             })
                                                         } else {
-                                                            if(args[1] === `11`) {
+                                                            if(args[1] === `11` || args[1].toLowerCase() === `impersonation`) {
                                                                 con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                                                 con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                                                     if(err) throw err;
@@ -722,7 +722,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                                                     con.query(sql, console.log())
                                                                 })
                                                             } else {
-                                                                if(args[1] === `12`) {
+                                                                if(args[1] === `12` || args[1].toLowerCase() === `username`) {
                                                                     con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                                                     con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                                                         if(err) throw err;
@@ -807,7 +807,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                                                         con.query(sql, console.log())
                                                                     })
                                                                 } else {
-                                                                    if(args[1] === `13`) {
+                                                                    if(args[1] === `13` || args[1].toLowerCase() === `personalinfo`) {
                                                                         con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                                                         con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                                                             if(err) throw err;
@@ -846,7 +846,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                                                             con.query(sql, console.log())
                                                                         })
                                                                     } else {
-                                                                        if(args[1] === `14`) {
+                                                                        if(args[1] === `14` || args[1].toLowerCase() === `spoiler`) {
                                                                             con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                                                             con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                                                                 if(err) throw err;
@@ -904,7 +904,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                                                                 con.query(sql, console.log())
                                                                             })
                                                                         } else {
-                                                                            if(args[1] === `15`) {
+                                                                            if(args[1] === `15` || args[1].toLowerCase() === `earrape`) {
                                                                                 con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                                                                 con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                                                                     if(err) throw err;
@@ -962,7 +962,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                                                                     con.query(sql, console.log())
                                                                                 })
                                                                             } else {
-                                                                                if(args[1] === `16`) {
+                                                                                if(args[1] === `16` || args[1].toLowerCase() === `minimod`) {
                                                                                     con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                                                                     con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                                                                         if(err) throw err;
@@ -1020,7 +1020,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                                                                         con.query(sql, console.log())
                                                                                     })
                                                                                 } else {
-                                                                                    if(args[1] === `17`) {
+                                                                                    if(args[1] === `17` || args[1].toLowerCase() === `interfere`) {
                                                                                         con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                                                                         con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                                                                             if(err) throw err;
@@ -1059,7 +1059,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                                                                             con.query(sql, console.log())
                                                                                         })
                                                                                     } else {
-                                                                                        if(args[1] === `18`) {
+                                                                                        if(args[1] === `18` || args[1].toLowerCase() === `ping`) {
                                                                                             con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                                                                             con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                                                                                 if(err) throw err;
@@ -1108,7 +1108,7 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                                                                                 con.query(sql, console.log())
                                                                                             })
                                                                                         } else {
-                                                                                            if(args[1] === `19`) {
+                                                                                            if(args[1] === `19` || args[1].toLowerCase() === `modmail`) {
                                                                                                 con.query(`CREATE TABLE IF NOT EXISTS punishes (id TEXT, previouspunish TEXT, swearing TEXT, advertising TEXT, maliciouslinks TEXT, incorrectchannel TEXT, toxicity TEXT, spam TEXT, nsfw TEXT, begging TEXT, malalts TEXT, vidsmusic TEXT, impersonation TEXT, symbols TEXT, personalinfo TEXT, spoilermisuse TEXT, earrape TEXT, minimod TEXT, interfere TEXT, pingowners TEXT, modmailabuse TEXT)`)
                                                                                                 con.query(`SELECT * FROM punishes WHERE id = '${user.id}'`, (err,rows) => {
                                                                                                     if(err) throw err;
