@@ -53,14 +53,14 @@ module.exports = {
                             sql = `INSERT INTO punishes (id, previouspunish, swearing, advertising, maliciouslinks, incorrectchannel, toxicity, spam, nsfw, begging, malalts, vidsmusic, impersonation, symbols, personalinfo, spoilermisuse, earrape, minimod, interfere, pingowners, modmailabuse) VALUES ('${user.id}', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0')`
                             message.channel.send(`<@${user.id}> has been warned by <@${member.id}> for ` + '``' + `Swearing` + '``' + `.
 They now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
-                            message.channel.send(`<@${user.id}> has been auto-muted for 1d 0h 0m 0s`)
+                            user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Swearing` + '``' + `.
+You now have ` + '``' + '1' + '``' + ` warnings in this category, and ` + '``' + '1' + '``' + ` total warnings.`)
+                            message.channel.send(`<@${user.id}> has been auto-muted for 0h 15m 0s`)
+                            user.user.send(`You have been auto-muted for 0h 15m 0s`)
                             user.roles.add(role)
                             setTimeout(function() {
                                 user.roles.remove(role)
-                            }, 86400 * 1000);
-                            user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Swearing` + '``' + `.
-You now have ` + '``' + '1' + '``' + ` warnings in this category, and ` + '``' + '1' + '``' + ` total warnings.`)
-                            user.user.send(`You have been auto-muted for 1d 0h 0m 0s`)
+                            }, 900 * 1000);
                         } else {
                             let currentwarn = parseInt(rows[0].previouspunish)
                             let otherwarn = parseInt(rows[0].swearing)
@@ -69,7 +69,7 @@ You now have ` + '``' + '1' + '``' + ` warnings in this category, and ` + '``' +
 They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
                             user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Swearing` + '``' + `.
 You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
-                            if (Math.floor(otherwarn + 1) >= 4) {
+                            if (Math.floor(otherwarn + 1) >= 6) {
                                 message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
                                 user.user.send(`You have been auto-banned for Permanent
 Appeal here: https://discord.gg/aKfcKs2RQg`)
@@ -78,30 +78,48 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                     targetMember.ban({reason: `Auto-ban`})
                                 }, 1000)
                             } else {
-                                if (Math.floor(otherwarn + 1) == 3) {
-                                    message.channel.send(`<@${user.id}> has been auto-muted for 24 0h 0m 0s`)
-                                    user.user.send(`You have been auto-muted for 24 0h 0m 0s`)
+                                if (Math.floor(otherwarn + 1) == 5) {
+                                    message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                    user.user.send(`You have been auto-muted for 2h 0m 0s`)
                                     user.roles.add(role)
                                     setTimeout(function() {
                                         user.roles.remove(role)
-                                    }, 2073600 * 1000);
+                                    }, 7200 * 1000);
                                 } else {
-                                    if (Math.floor(otherwarn + 1) == 2) {
-                                        message.channel.send(`<@${user.id}> has been auto-muted for 7d 0h 0m 0s`)
-                                        user.user.send(`You have been auto-muted for 7d 0h 0m 0s`)
+                                    if (Math.floor(otherwarn + 1) == 4) {
+                                        message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                        user.user.send(`You have been auto-muted for 2h 0m 0s`)
                                         user.roles.add(role)
                                         setTimeout(function() {
                                             user.roles.remove(role)
-                                        }, 604800 * 1000);
+                                        }, 7200 * 1000);
                                     } else {
-                                        if (Math.floor(otherwarn + 1) == 1) {
-                                            message.channel.send(`<@${user.id}> has been auto-muted for 1d 0h 0m 0s`)
-                                            user.user.send(`You have been auto-muted for 1d 0h 0m 0s`)
+                                        if (Math.floor(otherwarn + 1) == 3) {
+                                            message.channel.send(`<@${user.id}> has been auto-muted for 1h 0m 0s`)
+                                            user.user.send(`You have been auto-muted for 1h 0m 0s`)
                                             user.roles.add(role)
                                             setTimeout(function() {
                                                 user.roles.remove(role)
-                                            }, 86400 * 1000);
-                                        } 
+                                            }, 3600 * 1000);
+                                        } else {
+                                            if (Math.floor(otherwarn + 1) == 2) {
+                                                message.channel.send(`<@${user.id}> has been auto-muted for 0h 30m 0s`)
+                                                user.user.send(`You have been auto-muted for 0h 30m 0s`)
+                                                user.roles.add(role)
+                                                setTimeout(function() {
+                                                    user.roles.remove(role)
+                                                }, 1800 * 1000);
+                                            } else {
+                                                if (Math.floor(otherwarn + 1) == 1) {
+                                                    message.channel.send(`<@${user.id}> has been auto-muted for 0h 15m 0s`)
+                                                    user.user.send(`You have been auto-muted for 0h 15m 0s`)
+                                                    user.roles.add(role)
+                                                    setTimeout(function() {
+                                                        user.roles.remove(role)
+                                                    }, 900 * 1000);
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -200,6 +218,12 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
 They now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
                                         user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Incorrect Channel` + '``' + `.
 You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
+                                        message.channel.send(`<@${user.id}> has been auto-muted for 0h 15m 0s`)
+                                        user.user.send(`You have been auto-muted for 0h 15m 0s`)
+                                        user.roles.add(role)
+                                        setTimeout(function() {
+                                            user.roles.remove(role)
+                                        }, 900 * 1000);
                                     } else {
                                         let currentwarn = parseInt(rows[0].previouspunish)
                                         let otherwarn = parseInt(rows[0].incorrectchannel)
@@ -208,6 +232,60 @@ You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` tota
 They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
                                         user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Incorrect Channel` + '``' + `.
 You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
+                                        if (Math.floor(otherwarn + 1) >= 6) {
+                                            message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
+                                            user.user.send(`You have been auto-banned for Permanent
+    Appeal here: https://discord.gg/aKfcKs2RQg`)
+                                            const targetMember = message.guild.members.cache.get(user.id)
+                                            setTimeout(function() {
+                                                targetMember.ban({reason: `Auto-ban`})
+                                            }, 1000)
+                                        } else {
+                                            if (Math.floor(otherwarn + 1) == 5) {
+                                                message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                                user.user.send(`You have been auto-muted for 2h 0m 0s`)
+                                                user.roles.add(role)
+                                                setTimeout(function() {
+                                                    user.roles.remove(role)
+                                                }, 7200 * 1000);
+                                            } else {
+                                                if (Math.floor(otherwarn + 1) == 4) {
+                                                    message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                                    user.user.send(`You have been auto-muted for 2h 0m 0s`)
+                                                    user.roles.add(role)
+                                                    setTimeout(function() {
+                                                        user.roles.remove(role)
+                                                    }, 7200 * 1000);
+                                                } else {
+                                                    if (Math.floor(otherwarn + 1) == 3) {
+                                                        message.channel.send(`<@${user.id}> has been auto-muted for 1h 0m 0s`)
+                                                        user.user.send(`You have been auto-muted for 1h 0m 0s`)
+                                                        user.roles.add(role)
+                                                        setTimeout(function() {
+                                                            user.roles.remove(role)
+                                                        }, 3600 * 1000);
+                                                    } else {
+                                                        if (Math.floor(otherwarn + 1) == 2) {
+                                                            message.channel.send(`<@${user.id}> has been auto-muted for 0h 30m 0s`)
+                                                            user.user.send(`You have been auto-muted for 0h 30m 0s`)
+                                                            user.roles.add(role)
+                                                            setTimeout(function() {
+                                                                user.roles.remove(role)
+                                                            }, 1800 * 1000);
+                                                        } else {
+                                                            if (Math.floor(otherwarn + 1) == 1) {
+                                                                message.channel.send(`<@${user.id}> has been auto-muted for 0h 15m 0s`)
+                                                                user.user.send(`You have been auto-muted for 0h 15m 0s`)
+                                                                user.roles.add(role)
+                                                                setTimeout(function() {
+                                                                    user.roles.remove(role)
+                                                                }, 900 * 1000);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                     con.query(sql, console.log())
                                 })
@@ -225,8 +303,8 @@ You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this ca
 They now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
                                             user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Toxicity` + '``' + `.
 You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
-                                            message.channel.send(`<@${user.id}> has been auto-muted for 1d 0h 0m 0s`)
-                                            user.user.send(`You have been auto-muted for 1d 0h 0m 0s`)
+                                            message.channel.send(`<@${user.id}> has been auto-muted for 24h 0m 0s`)
+                                            user.user.send(`You have been auto-muted for 24h 0m 0s`)
                                             user.roles.add(role)
                                             setTimeout(function() {
                                                 user.roles.remove(role)
@@ -239,7 +317,7 @@ You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` tota
 They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
                                             user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Toxicity` + '``' + `.
 You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
-                                            if (Math.floor(otherwarn + 1) >= 4) {
+                                            if (Math.floor(otherwarn + 1) >= 2) {
                                                 message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
                                                 user.user.send(`You have been auto-banned for Permanent
 Appeal here: https://discord.gg/aKfcKs2RQg`)
@@ -248,31 +326,13 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                                     targetMember.ban({reason: `Auto-ban`})
                                                 }, 1000)
                                             } else {
-                                                if (Math.floor(otherwarn + 1) == 3) {
-                                                    message.channel.send(`<@${user.id}> has been auto-muted for 24 0h 0m 0s`)
-                                                    user.user.send(`You have been auto-muted for 24 0h 0m 0s`)
+                                                if (Math.floor(otherwarn + 1) == 1) {
+                                                    message.channel.send(`<@${user.id}> has been auto-muted for 24h 0m 0s`)
+                                                    user.user.send(`You have been auto-muted for 24h 0m 0s`)
                                                     user.roles.add(role)
                                                     setTimeout(function() {
                                                         user.roles.remove(role)
-                                                    }, 2073600 * 1000);
-                                                } else {
-                                                    if (Math.floor(otherwarn + 1) == 2) {
-                                                        message.channel.send(`<@${user.id}> has been auto-muted for 7d 0h 0m 0s`)
-                                                        user.user.send(`You have been auto-muted for 7d 0h 0m 0s`)
-                                                        user.roles.add(role)
-                                                        setTimeout(function() {
-                                                            user.roles.remove(role)
-                                                        }, 604800 * 1000);
-                                                    } else {
-                                                        if (Math.floor(otherwarn + 1) == 1) {
-                                                            message.channel.send(`<@${user.id}> has been auto-muted for 1d 0h 0m 0s`)
-                                                            user.user.send(`You have been auto-muted for 1d 0h 0m 0s`)
-                                                            user.roles.add(role)
-                                                            setTimeout(function() {
-                                                                user.roles.remove(role)
-                                                            }, 86400 * 1000);
-                                                        } 
-                                                    }
+                                                    }, 86400 * 1000);
                                                 }
                                             }
                                         }
@@ -292,6 +352,12 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
 They now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
                                                 user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Spamming` + '``' + `.
 You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
+                                                message.channel.send(`<@${user.id}> has been auto-muted for 0h 15m 0s`)
+                                                user.user.send(`You have been auto-muted for 0h 15m 0s`)
+                                                user.roles.add(role)
+                                                setTimeout(function() {
+                                                    user.roles.remove(role)
+                                                }, 900 * 1000);
                                             } else {
                                                 let currentwarn = parseInt(rows[0].previouspunish)
                                                 let otherwarn = parseInt(rows[0].spam)
@@ -300,29 +366,57 @@ You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` tota
 They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
                                                 user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Spamming` + '``' + `.
 You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
-                                                if (Math.floor(otherwarn + 1) >= 4) {
-                                                    message.channel.send(`<@${user.id}> has been auto-muted for 7d 0h 0m 0s`)
-                                                    user.user.send(`You have been auto-muted for 7d 0h 0m 0s`)
-                                                    user.roles.add(role)
+                                                if (Math.floor(otherwarn + 1) >= 6) {
+                                                    message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
+                                                    user.user.send(`You have been auto-banned for Permanent
+Appeal here: https://discord.gg/aKfcKs2RQg`)
+                                                    const targetMember = message.guild.members.cache.get(user.id)
                                                     setTimeout(function() {
-                                                        user.roles.remove(role)
-                                                    }, 604800 * 1000);
+                                                        targetMember.ban({reason: `Auto-ban`})
+                                                    }, 1000)
                                                 } else {
-                                                    if (Math.floor(otherwarn + 1) == 3) {
-                                                        message.channel.send(`<@${user.id}> has been auto-muted for 1d 0h 0m 0s`)
-                                                        user.user.send(`You have been auto-muted for 1d 0h 0m 0s`)
+                                                    if (Math.floor(otherwarn + 1) == 5) {
+                                                        message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                                        user.user.send(`You have been auto-muted for 2h 0m 0s`)
                                                         user.roles.add(role)
                                                         setTimeout(function() {
                                                             user.roles.remove(role)
-                                                        }, 86400 * 1000);
+                                                        }, 7200 * 1000);
                                                     } else {
-                                                        if (Math.floor(otherwarn + 1) == 2) {
-                                                            message.channel.send(`<@${user.id}> has been auto-muted for 0d 1h 0m 0s`)
-                                                            user.user.send(`You have been auto-muted for 0d 1h 0m 0s`)
+                                                        if (Math.floor(otherwarn + 1) == 4) {
+                                                            message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                                            user.user.send(`You have been auto-muted for 2h 0m 0s`)
                                                             user.roles.add(role)
                                                             setTimeout(function() {
                                                                 user.roles.remove(role)
-                                                            }, 3600 * 1000);
+                                                            }, 7200 * 1000);
+                                                        } else {
+                                                            if (Math.floor(otherwarn + 1) == 3) {
+                                                                message.channel.send(`<@${user.id}> has been auto-muted for 1h 0m 0s`)
+                                                                user.user.send(`You have been auto-muted for 1h 0m 0s`)
+                                                                user.roles.add(role)
+                                                                setTimeout(function() {
+                                                                    user.roles.remove(role)
+                                                                }, 3600 * 1000);
+                                                            } else {
+                                                                if (Math.floor(otherwarn + 1) == 2) {
+                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 0h 30m 0s`)
+                                                                    user.user.send(`You have been auto-muted for 0h 30m 0s`)
+                                                                    user.roles.add(role)
+                                                                    setTimeout(function() {
+                                                                        user.roles.remove(role)
+                                                                    }, 1800 * 1000);
+                                                                } else {
+                                                                    if (Math.floor(otherwarn + 1) == 1) {
+                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 0h 15m 0s`)
+                                                                        user.user.send(`You have been auto-muted for 0h 15m 0s`)
+                                                                        user.roles.add(role)
+                                                                        setTimeout(function() {
+                                                                            user.roles.remove(role)
+                                                                        }, 900 * 1000);
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -343,12 +437,12 @@ You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this ca
 They now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
                                                         user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `NSFW Content` + '``' + `.
 You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
-                                                        message.channel.send(`<@${user.id}> has been auto-muted for 7d 0h 0m 0s`)
-                                                        user.user.send(`You have been auto-muted for 7d 0h 0m 0s`)
+                                                        message.channel.send(`<@${user.id}> has been auto-muted for 24h 0m 0s`)
+                                                        user.user.send(`You have been auto-muted for 24h 0m 0s`)
                                                         user.roles.add(role)
                                                         setTimeout(function() {
                                                             user.roles.remove(role)
-                                                        }, 604800 * 1000);
+                                                        }, 86400 * 1000);
                                                     } else {
                                                         let currentwarn = parseInt(rows[0].previouspunish)
                                                         let otherwarn = parseInt(rows[0].nsfw)
@@ -357,7 +451,7 @@ You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` tota
 They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
                                                         user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `NSFW Content` + '``' + `.
 You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
-                                                        if (Math.floor(otherwarn + 1) >= 3) {
+                                                        if (Math.floor(otherwarn + 1) >= 2) {
                                                             message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
                                                             user.user.send(`You have been auto-banned for Permanent
 Appeal here: https://discord.gg/aKfcKs2RQg`)
@@ -366,20 +460,13 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                                                                 targetMember.ban({reason: `Auto-ban`})
                                                             }, 1000)
                                                         } else {
-                                                            if (Math.floor(otherwarn + 1) == 2) {
-                                                                message.channel.send(`<@${user.id}> has been auto-muted for 24 0h 0m 0s`)
-                                                                user.user.send(`You have been auto-muted for 24 0h 0m 0s`)
+                                                            if (Math.floor(otherwarn + 1) == 1) {
+                                                                message.channel.send(`<@${user.id}> has been auto-muted for 24h 0m 0s`)
+                                                                user.user.send(`You have been auto-muted for 24h 0m 0s`)
                                                                 user.roles.add(role)
                                                                 setTimeout(function() {
                                                                     user.roles.remove(role)
-                                                                }, 2073600 * 1000);
-                                                            } else {
-                                                                message.channel.send(`<@${user.id}> has been auto-muted for 7d 0h 0m 0s`)
-                                                                user.user.send(`You have been auto-muted for 7d 0h 0m 0s`)
-                                                                user.roles.add(role)
-                                                                setTimeout(function() {
-                                                                    user.roles.remove(role)
-                                                                }, 604800 * 1000);
+                                                                }, 86400 * 1000);
                                                             }
                                                         }
                                                     }
@@ -399,6 +486,12 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
 They now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
                                                             user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Begging for Roles/Nitro` + '``' + `.
 You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
+                                                            message.channel.send(`<@${user.id}> has been auto-muted for 0h 15m 0s`)
+                                                            user.user.send(`You have been auto-muted for 0h 15m 0s`)
+                                                            user.roles.add(role)
+                                                            setTimeout(function() {
+                                                                user.roles.remove(role)
+                                                            }, 900 * 1000);
                                                         } else {
                                                             let currentwarn = parseInt(rows[0].previouspunish)
                                                             let otherwarn = parseInt(rows[0].begging)
@@ -407,29 +500,57 @@ You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` tota
 They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
                                                             user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Begging for Roles/Nitro` + '``' + `.
 You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
-                                                            if (Math.floor(otherwarn + 1) >= 4) {
-                                                                message.channel.send(`<@${user.id}> has been auto-muted for 7d 0h 0m 0s`)
-                                                                user.user.send(`You have been auto-muted for 7d 0h 0m 0s`)
-                                                                user.roles.add(role)
+                                                            if (Math.floor(otherwarn + 1) >= 6) {
+                                                                message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
+                                                                user.user.send(`You have been auto-banned for Permanent
+Appeal here: https://discord.gg/aKfcKs2RQg`)
+                                                                const targetMember = message.guild.members.cache.get(user.id)
                                                                 setTimeout(function() {
-                                                                    user.roles.remove(role)
-                                                                }, 604800 * 1000);
+                                                                    targetMember.ban({reason: `Auto-ban`})
+                                                                }, 1000)
                                                             } else {
-                                                                if (Math.floor(otherwarn + 1) == 3) {
-                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 1d 0h 0m 0s`)
-                                                                    user.user.send(`You have been auto-muted for 1d 0h 0m 0s`)
+                                                                if (Math.floor(otherwarn + 1) == 5) {
+                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                                                    user.user.send(`You have been auto-muted for 2h 0m 0s`)
                                                                     user.roles.add(role)
                                                                     setTimeout(function() {
                                                                         user.roles.remove(role)
-                                                                    }, 86400 * 1000);
+                                                                    }, 7200 * 1000);
                                                                 } else {
-                                                                    if (Math.floor(otherwarn + 1) == 2) {
-                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 0d 1h 0m 0s`)
-                                                                        user.user.send(`You have been auto-muted for 0d 1h 0m 0s`)
+                                                                    if (Math.floor(otherwarn + 1) == 4) {
+                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                                                        user.user.send(`You have been auto-muted for 2h 0m 0s`)
                                                                         user.roles.add(role)
                                                                         setTimeout(function() {
                                                                             user.roles.remove(role)
-                                                                        }, 3600 * 1000);
+                                                                        }, 7200 * 1000);
+                                                                    } else {
+                                                                        if (Math.floor(otherwarn + 1) == 3) {
+                                                                            message.channel.send(`<@${user.id}> has been auto-muted for 1h 0m 0s`)
+                                                                            user.user.send(`You have been auto-muted for 1h 0m 0s`)
+                                                                            user.roles.add(role)
+                                                                            setTimeout(function() {
+                                                                                user.roles.remove(role)
+                                                                            }, 3600 * 1000);
+                                                                        } else {
+                                                                            if (Math.floor(otherwarn + 1) == 2) {
+                                                                                message.channel.send(`<@${user.id}> has been auto-muted for 0h 30m 0s`)
+                                                                                user.user.send(`You have been auto-muted for 0h 30m 0s`)
+                                                                                user.roles.add(role)
+                                                                                setTimeout(function() {
+                                                                                    user.roles.remove(role)
+                                                                                }, 1800 * 1000);
+                                                                            } else {
+                                                                                if (Math.floor(otherwarn + 1) == 1) {
+                                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 0h 15m 0s`)
+                                                                                    user.user.send(`You have been auto-muted for 0h 15m 0s`)
+                                                                                    user.roles.add(role)
+                                                                                    setTimeout(function() {
+                                                                                        user.roles.remove(role)
+                                                                                    }, 900 * 1000);
+                                                                                }
+                                                                            }
+                                                                        }
                                                                     }
                                                                 }
                                                             }
@@ -450,6 +571,13 @@ You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this ca
 They now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
                                                                 user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Maliciously Using Alts` + '``' + `.
 You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
+                                                                message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
+                                                                user.user.send(`You have been auto-banned for Permanent
+Appeal here: https://discord.gg/aKfcKs2RQg`)
+                                                                const targetMember = message.guild.members.cache.get(user.id)
+                                                                setTimeout(function() {
+                                                                    targetMember.ban({reason: `Auto-ban`})
+                                                                }, 1000)
                                                             } else {
                                                                 let currentwarn = parseInt(rows[0].previouspunish)
                                                                 let otherwarn = parseInt(rows[0].malalts)
@@ -458,6 +586,13 @@ You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` tota
 They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
                                                                 user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Maliciously Using Alts` + '``' + `.
 You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
+                                                                message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
+                                                                user.user.send(`You have been auto-banned for Permanent
+Appeal here: https://discord.gg/aKfcKs2RQg`)
+                                                                const targetMember = message.guild.members.cache.get(user.id)
+                                                                setTimeout(function() {
+                                                                    targetMember.ban({reason: `Auto-ban`})
+                                                                }, 1000)
                                                             }
                                                             con.query(sql, console.log())
                                                         })
@@ -475,6 +610,12 @@ You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this ca
 They now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
                                                                     user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Normal Videos in Music Channel` + '``' + `.
 You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
+                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 0h 15m 0s`)
+                                                                    user.user.send(`You have been auto-muted for 0h 15m 0s`)
+                                                                    user.roles.add(role)
+                                                                    setTimeout(function() {
+                                                                        user.roles.remove(role)
+                                                                    }, 900 * 1000);
                                                                 } else {
                                                                     let currentwarn = parseInt(rows[0].previouspunish)
                                                                     let otherwarn = parseInt(rows[0].vidsmusic)
@@ -483,29 +624,58 @@ You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` tota
 They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
                                                                     user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Normal Videos in Music Channel` + '``' + `.
 You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
-                                                                    if (Math.floor(otherwarn + 1) >= 4) {
-                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 7d 0h 0m 0s`)
-                                                                        user.user.send(`You have been auto-muted for 7d 0h 0m 0s`)
-                                                                        user.roles.add(role)
+
+                                                                    if (Math.floor(otherwarn + 1) >= 6) {
+                                                                        message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
+                                                                        user.user.send(`You have been auto-banned for Permanent
+Appeal here: https://discord.gg/aKfcKs2RQg`)
+                                                                        const targetMember = message.guild.members.cache.get(user.id)
                                                                         setTimeout(function() {
-                                                                            user.roles.remove(role)
-                                                                        }, 604800 * 1000);
+                                                                            targetMember.ban({reason: `Auto-ban`})
+                                                                        }, 1000)
                                                                     } else {
-                                                                        if (Math.floor(otherwarn + 1) == 3) {
-                                                                            message.channel.send(`<@${user.id}> has been auto-muted for 1d 0h 0m 0s`)
-                                                                            user.user.send(`You have been auto-muted for 1d 0h 0m 0s`)
+                                                                        if (Math.floor(otherwarn + 1) == 5) {
+                                                                            message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                                                            user.user.send(`You have been auto-muted for 2h 0m 0s`)
                                                                             user.roles.add(role)
                                                                             setTimeout(function() {
                                                                                 user.roles.remove(role)
-                                                                            }, 86400 * 1000);
+                                                                            }, 7200 * 1000);
                                                                         } else {
-                                                                            if (Math.floor(otherwarn + 1) == 2) {
-                                                                                message.channel.send(`<@${user.id}> has been auto-muted for 0d 1h 0m 0s`)
-                                                                                user.user.send(`You have been auto-muted for 0d 1h 0m 0s`)
+                                                                            if (Math.floor(otherwarn + 1) == 4) {
+                                                                                message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                                                                user.user.send(`You have been auto-muted for 2h 0m 0s`)
                                                                                 user.roles.add(role)
                                                                                 setTimeout(function() {
                                                                                     user.roles.remove(role)
-                                                                                }, 3600 * 1000);
+                                                                                }, 7200 * 1000);
+                                                                            } else {
+                                                                                if (Math.floor(otherwarn + 1) == 3) {
+                                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 1h 0m 0s`)
+                                                                                    user.user.send(`You have been auto-muted for 1h 0m 0s`)
+                                                                                    user.roles.add(role)
+                                                                                    setTimeout(function() {
+                                                                                        user.roles.remove(role)
+                                                                                    }, 3600 * 1000);
+                                                                                } else {
+                                                                                    if (Math.floor(otherwarn + 1) == 2) {
+                                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 0h 30m 0s`)
+                                                                                        user.user.send(`You have been auto-muted for 0h 30m 0s`)
+                                                                                        user.roles.add(role)
+                                                                                        setTimeout(function() {
+                                                                                            user.roles.remove(role)
+                                                                                        }, 1800 * 1000);
+                                                                                    } else {
+                                                                                        if (Math.floor(otherwarn + 1) == 1) {
+                                                                                            message.channel.send(`<@${user.id}> has been auto-muted for 0h 15m 0s`)
+                                                                                            user.user.send(`You have been auto-muted for 0h 15m 0s`)
+                                                                                            user.roles.add(role)
+                                                                                            setTimeout(function() {
+                                                                                                user.roles.remove(role)
+                                                                                            }, 900 * 1000);
+                                                                                        }
+                                                                                    }
+                                                                                }
                                                                             }
                                                                         }
                                                                     }
@@ -565,6 +735,12 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
 They now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
                                                                             user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Symbols in Username` + '``' + `.
 You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
+                                                                            message.channel.send(`<@${user.id}> has been auto-muted for 0h 15m 0s`)
+                                                                            user.user.send(`You have been auto-muted for 0h 15m 0s`)
+                                                                            user.roles.add(role)
+                                                                            setTimeout(function() {
+                                                                                user.roles.remove(role)
+                                                                            }, 900 * 1000);
                                                                         } else {
                                                                             let currentwarn = parseInt(rows[0].previouspunish)
                                                                             let otherwarn = parseInt(rows[0].symbols)
@@ -573,6 +749,60 @@ You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` tota
 They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
                                                                             user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Symbols in Username` + '``' + `.
 You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
+                                                                            if (Math.floor(otherwarn + 1) >= 6) {
+                                                                                message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
+                                                                                user.user.send(`You have been auto-banned for Permanent
+Appeal here: https://discord.gg/aKfcKs2RQg`)
+                                                                                const targetMember = message.guild.members.cache.get(user.id)
+                                                                                setTimeout(function() {
+                                                                                    targetMember.ban({reason: `Auto-ban`})
+                                                                                }, 1000)
+                                                                            } else {
+                                                                                if (Math.floor(otherwarn + 1) == 5) {
+                                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                                                                    user.user.send(`You have been auto-muted for 2h 0m 0s`)
+                                                                                    user.roles.add(role)
+                                                                                    setTimeout(function() {
+                                                                                        user.roles.remove(role)
+                                                                                    }, 7200 * 1000);
+                                                                                } else {
+                                                                                    if (Math.floor(otherwarn + 1) == 4) {
+                                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                                                                        user.user.send(`You have been auto-muted for 2h 0m 0s`)
+                                                                                        user.roles.add(role)
+                                                                                        setTimeout(function() {
+                                                                                            user.roles.remove(role)
+                                                                                        }, 7200 * 1000);
+                                                                                    } else {
+                                                                                        if (Math.floor(otherwarn + 1) == 3) {
+                                                                                            message.channel.send(`<@${user.id}> has been auto-muted for 1h 0m 0s`)
+                                                                                            user.user.send(`You have been auto-muted for 1h 0m 0s`)
+                                                                                            user.roles.add(role)
+                                                                                            setTimeout(function() {
+                                                                                                user.roles.remove(role)
+                                                                                            }, 3600 * 1000);
+                                                                                        } else {
+                                                                                            if (Math.floor(otherwarn + 1) == 2) {
+                                                                                                message.channel.send(`<@${user.id}> has been auto-muted for 0h 30m 0s`)
+                                                                                                user.user.send(`You have been auto-muted for 0h 30m 0s`)
+                                                                                                user.roles.add(role)
+                                                                                                setTimeout(function() {
+                                                                                                    user.roles.remove(role)
+                                                                                                }, 1800 * 1000);
+                                                                                            } else {
+                                                                                                if (Math.floor(otherwarn + 1) == 1) {
+                                                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 0h 15m 0s`)
+                                                                                                    user.user.send(`You have been auto-muted for 0h 15m 0s`)
+                                                                                                    user.roles.add(role)
+                                                                                                    setTimeout(function() {
+                                                                                                        user.roles.remove(role)
+                                                                                                    }, 900 * 1000);
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
                                                                         }
                                                                         con.query(sql, console.log())
                                                                     })
@@ -629,12 +859,12 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
 They now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
                                                                                     user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Spoiler Misuse` + '``' + `.
 You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
-                                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 1d 0h 0m 0s`)
-                                                                                    user.user.send(`You have been auto-muted for 1d 0h 0m 0s`)
+                                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 1h 0m 0s`)
+                                                                                    user.user.send(`You have been auto-muted for 1h 0m 0s`)
                                                                                     user.roles.add(role)
                                                                                     setTimeout(function() {
                                                                                         user.roles.remove(role)
-                                                                                    }, 86400 * 1000);
+                                                                                    }, 3600 * 1000);
                                                                                 } else {
                                                                                     let currentwarn = parseInt(rows[0].previouspunish)
                                                                                     let otherwarn = parseInt(rows[0].spoilermisuse)
@@ -643,20 +873,32 @@ You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` tota
 They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
                                                                                     user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Spoiler Misuse` + '``' + `.
 You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
-                                                                                    if (Math.floor(otherwarn + 1) == 2) {
-                                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 7d 0h 0m 0s`)
-                                                                                        user.user.send(`You have been auto-muted for 7d 0h 0m 0s`)
-                                                                                        user.roles.add(role)
+                                                                                    if (Math.floor(otherwarn + 1) >= 3) {
+                                                                                        message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
+                                                                                        user.user.send(`You have been auto-banned for Permanent
+Appeal here: https://discord.gg/aKfcKs2RQg`)
+                                                                                        const targetMember = message.guild.members.cache.get(user.id)
                                                                                         setTimeout(function() {
-                                                                                            user.roles.remove(role)
-                                                                                        }, 604800 * 1000);
+                                                                                            targetMember.ban({reason: `Auto-ban`})
+                                                                                        }, 1000)
                                                                                     } else {
-                                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 1d 0h 0m 0s`)
-                                                                                        user.user.send(`You have been auto-muted for 1d 0h 0m 0s`)
-                                                                                        user.roles.add(role)
-                                                                                        setTimeout(function() {
-                                                                                            user.roles.remove(role)
-                                                                                        }, 86400 * 1000);
+                                                                                        if (Math.floor(otherwarn + 1) == 2) {
+                                                                                            message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                                                                            user.user.send(`You have been auto-muted for 2h 0m 0s`)
+                                                                                            user.roles.add(role)
+                                                                                            setTimeout(function() {
+                                                                                                user.roles.remove(role)
+                                                                                            }, 7200 * 1000);
+                                                                                        } else {
+                                                                                            if (Math.floor(otherwarn + 1) == 1) {
+                                                                                                message.channel.send(`<@${user.id}> has been auto-muted for 1h 0m 0s`)
+                                                                                                user.user.send(`You have been auto-muted for 1h 0m 0s`)
+                                                                                                user.roles.add(role)
+                                                                                                setTimeout(function() {
+                                                                                                    user.roles.remove(role)
+                                                                                                }, 3600 * 1000);
+                                                                                            }
+                                                                                        }
                                                                                     }
                                                                                 }
                                                                                 con.query(sql, console.log())
@@ -675,6 +917,12 @@ You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this ca
 They now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
                                                                                         user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Earrape/Voicechanger` + '``' + `.
 You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
+                                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 1h 0m 0s`)
+                                                                                        user.user.send(`You have been auto-muted for 1h 0m 0s`)
+                                                                                        user.roles.add(role)
+                                                                                        setTimeout(function() {
+                                                                                            user.roles.remove(role)
+                                                                                        }, 3600 * 1000);
                                                                                     } else {
                                                                                         let currentwarn = parseInt(rows[0].previouspunish)
                                                                                         let otherwarn = parseInt(rows[0].earrape)
@@ -683,6 +931,33 @@ You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` tota
 They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
                                                                                         user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Earrape/Voicechanger` + '``' + `.
 You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
+                                                                                        if (Math.floor(otherwarn + 1) >= 3) {
+                                                                                            message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
+                                                                                            user.user.send(`You have been auto-banned for Permanent
+Appeal here: https://discord.gg/aKfcKs2RQg`)
+                                                                                            const targetMember = message.guild.members.cache.get(user.id)
+                                                                                            setTimeout(function() {
+                                                                                                targetMember.ban({reason: `Auto-ban`})
+                                                                                            }, 1000)
+                                                                                        } else {
+                                                                                            if (Math.floor(otherwarn + 1) == 2) {
+                                                                                                message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                                                                                user.user.send(`You have been auto-muted for 2h 0m 0s`)
+                                                                                                user.roles.add(role)
+                                                                                                setTimeout(function() {
+                                                                                                    user.roles.remove(role)
+                                                                                                }, 7200 * 1000);
+                                                                                            } else {
+                                                                                                if (Math.floor(otherwarn + 1) == 1) {
+                                                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 1h 0m 0s`)
+                                                                                                    user.user.send(`You have been auto-muted for 1h 0m 0s`)
+                                                                                                    user.roles.add(role)
+                                                                                                    setTimeout(function() {
+                                                                                                        user.roles.remove(role)
+                                                                                                    }, 3600 * 1000);
+                                                                                                }
+                                                                                            }
+                                                                                        }
                                                                                     }
                                                                                     con.query(sql, console.log())
                                                                                 })
@@ -700,6 +975,12 @@ You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this ca
 They now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
                                                                                             user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Minimodding` + '``' + `.
 You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
+                                                                                            message.channel.send(`<@${user.id}> has been auto-muted for 1h 0m 0s`)
+                                                                                            user.user.send(`You have been auto-muted for 1h 0m 0s`)
+                                                                                            user.roles.add(role)
+                                                                                            setTimeout(function() {
+                                                                                                user.roles.remove(role)
+                                                                                            }, 3600 * 1000);
                                                                                         } else {
                                                                                             let currentwarn = parseInt(rows[0].previouspunish)
                                                                                             let otherwarn = parseInt(rows[0].minimod)
@@ -708,25 +989,26 @@ You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` tota
 They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
                                                                                             user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Minimodding` + '``' + `.
 You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
-                                                                                            if (Math.floor(otherwarn + 1) >= 4) {
-                                                                                                message.channel.send(`<@${user.id}> has been auto-muted for 7d 0h 0m 0s`)
-                                                                                                user.user.send(`You have been auto-muted for 7d 0h 0m 0s`)
-                                                                                                user.roles.add(role)
+                                                                                            if (Math.floor(otherwarn + 1) >= 3) {
+                                                                                                message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
+                                                                                                user.user.send(`You have been auto-banned for Permanent
+Appeal here: https://discord.gg/aKfcKs2RQg`)
+                                                                                                const targetMember = message.guild.members.cache.get(user.id)
                                                                                                 setTimeout(function() {
-                                                                                                    user.roles.remove(role)
-                                                                                                }, 604800 * 1000);
+                                                                                                    targetMember.ban({reason: `Auto-ban`})
+                                                                                                }, 1000)
                                                                                             } else {
-                                                                                                if (Math.floor(otherwarn + 1) == 3) {
-                                                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 1d 0h 0m 0s`)
-                                                                                                    user.user.send(`You have been auto-muted for 1d 0h 0m 0s`)
+                                                                                                if (Math.floor(otherwarn + 1) == 2) {
+                                                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 2h 0m 0s`)
+                                                                                                    user.user.send(`You have been auto-muted for 2h 0m 0s`)
                                                                                                     user.roles.add(role)
                                                                                                     setTimeout(function() {
                                                                                                         user.roles.remove(role)
-                                                                                                    }, 86400 * 1000);
+                                                                                                    }, 7200 * 1000);
                                                                                                 } else {
-                                                                                                    if (Math.floor(otherwarn + 1) == 2) {
-                                                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 0d 1h 0m 0s`)
-                                                                                                        user.user.send(`You have been auto-muted for 0d 1h 0m 0s`)
+                                                                                                    if (Math.floor(otherwarn + 1) == 1) {
+                                                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 1h 0m 0s`)
+                                                                                                        user.user.send(`You have been auto-muted for 1h 0m 0s`)
                                                                                                         user.roles.add(role)
                                                                                                         setTimeout(function() {
                                                                                                             user.roles.remove(role)
@@ -751,6 +1033,13 @@ You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this ca
 They now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
                                                                                                 user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Interfering with moderators duties` + '``' + `.
 You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
+                                                                                                message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
+                                                                                                user.user.send(`You have been auto-banned for Permanent
+Appeal here: https://discord.gg/aKfcKs2RQg`)
+                                                                                                const targetMember = message.guild.members.cache.get(user.id)
+                                                                                                setTimeout(function() {
+                                                                                                    targetMember.ban({reason: `Auto-ban`})
+                                                                                                }, 1000)
                                                                                             } else {
                                                                                                 let currentwarn = parseInt(rows[0].previouspunish)
                                                                                                 let otherwarn = parseInt(rows[0].interfere)
@@ -759,23 +1048,13 @@ You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` tota
 They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
                                                                                                 user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Interfering with moderators duties` + '``' + `.
 You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
-                                                                                                if (Math.floor(otherwarn + 1) >= 3) {
-                                                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 1d 0h 0m 0s`)
-                                                                                                    user.user.send(`You have been auto-muted for 1d 0h 0m 0s`)
-                                                                                                    user.roles.add(role)
-                                                                                                    setTimeout(function() {
-                                                                                                        user.roles.remove(role)
-                                                                                                    }, 86400 * 1000);
-                                                                                                } else {
-                                                                                                    if (Math.floor(otherwarn + 1) == 2) {
-                                                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 0d 1h 0m 0s`)
-                                                                                                        user.user.send(`You have been auto-muted for 0d 1h 0m 0s`)
-                                                                                                        user.roles.add(role)
-                                                                                                        setTimeout(function() {
-                                                                                                            user.roles.remove(role)
-                                                                                                        }, 3600 * 1000);
-                                                                                                    }
-                                                                                                }
+                                                                                                message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
+                                                                                                user.user.send(`You have been auto-banned for Permanent
+Appeal here: https://discord.gg/aKfcKs2RQg`)
+                                                                                                const targetMember = message.guild.members.cache.get(user.id)
+                                                                                                setTimeout(function() {
+                                                                                                    targetMember.ban({reason: `Auto-ban`})
+                                                                                                }, 1000)
                                                                                             }
                                                                                             con.query(sql, console.log())
                                                                                         })
@@ -793,6 +1072,12 @@ You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this ca
 They now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
                                                                                                     user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Pinging Owners` + '``' + `.
 You now have ` + '``1``' + ` warnings in this category, and ` + '``1``' + ` total warnings.`)
+                                                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 24h 0m 0s`)
+                                                                                                    user.user.send(`You have been auto-muted for 24h 0m 0s`)
+                                                                                                    user.roles.add(role)
+                                                                                                    setTimeout(function() {
+                                                                                                        user.roles.remove(role)
+                                                                                                    }, 86400 * 1000);
                                                                                                 } else {
                                                                                                     let currentwarn = parseInt(rows[0].previouspunish)
                                                                                                     let otherwarn = parseInt(rows[0].pingowners)
@@ -802,12 +1087,22 @@ They now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this c
                                                                                                     user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Pinging Owners` + '``' + `.
 You now have ` + '``' + Math.floor(otherwarn + 1) + '``' + ` warnings in this category, and ` + '``' + Math.floor(currentwarn + 1) + '``' + ` total warnings.`)
                                                                                                     if (Math.floor(otherwarn + 1) >= 2) {
-                                                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 1d 0h 0m 0s`)
-                                                                                                        user.user.send(`You have been auto-muted for 1d 0h 0m 0s`)
-                                                                                                        user.roles.add(role)
+                                                                                                        message.channel.send(`<@${user.id}> has been auto-banned for Permanent`)
+                                                                                                        user.user.send(`You have been auto-banned for Permanent
+Appeal here: https://discord.gg/aKfcKs2RQg`)
+                                                                                                        const targetMember = message.guild.members.cache.get(user.id)
                                                                                                         setTimeout(function() {
-                                                                                                            user.roles.remove(role)
-                                                                                                        }, 86400 * 1000);
+                                                                                                            targetMember.ban({reason: `Auto-ban`})
+                                                                                                        }, 1000)
+                                                                                                    } else {
+                                                                                                        if (Math.floor(otherwarn + 1) == 1) {
+                                                                                                            message.channel.send(`<@${user.id}> has been auto-muted for 24h 0m 0s`)
+                                                                                                            user.user.send(`You have been auto-muted for 24h 0m 0s`)
+                                                                                                            user.roles.add(role)
+                                                                                                            setTimeout(function() {
+                                                                                                                user.roles.remove(role)
+                                                                                                            }, 86400 * 1000);
+                                                                                                        }
                                                                                                     }
                                                                                                 }
                                                                                                 con.query(sql, console.log())
@@ -857,36 +1152,36 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
 They now have ` + '``N/A``' + ` warnings in this category, and ` + '``N/A``' + ` total warnings.`)
                                                                                                     user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Other (Low Severity)` + '``' + `.
 You now have ` + '``N/A``' + ` warnings in this category, and ` + '``N/A``' + ` total warnings.`)
-                                                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 0d 1h 0m 0s`)
-                                                                                                    user.user.send(`You have been auto-muted for 0d 1h 0m 0s`)
+                                                                                                    message.channel.send(`<@${user.id}> has been auto-muted for 0h 15m 0s`)
+                                                                                                    user.user.send(`You have been auto-muted for 0h 15m 0s`)
                                                                                                     user.roles.add(role)
                                                                                                     setTimeout(function() {
                                                                                                         user.roles.remove(role)
-                                                                                                    }, 3600 * 1000);
+                                                                                                    }, 900 * 1000);
                                                                                                 } else {
                                                                                                     if(args[1].toLowerCase() === `medium`) {
                                                                                                         message.channel.send(`<@${user.id}> has been warned by <@${member.id}> for ` + '``' + `Other (Medium Severity)` + '``' + `.
 They now have ` + '``N/A``' + ` warnings in this category, and ` + '``N/A``' + ` total warnings.`)
                                                                                                         user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Other (Medium Severity)` + '``' + `.
 You now have ` + '``N/A``' + ` warnings in this category, and ` + '``N/A``' + ` total warnings.`)
-                                                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 1d 0h 0m 0s`)
-                                                                                                        user.user.send(`You have been auto-muted for 1d 0h 0m 0s`)
+                                                                                                        message.channel.send(`<@${user.id}> has been auto-muted for 1h 0m 0s`)
+                                                                                                        user.user.send(`You have been auto-muted for 1h 0m 0s`)
                                                                                                         user.roles.add(role)
                                                                                                         setTimeout(function() {
                                                                                                             user.roles.remove(role)
-                                                                                                        }, 86400 * 1000);
+                                                                                                        }, 3600 * 1000);
                                                                                                     } else {
                                                                                                         if(args[1].toLowerCase() === `high`) {
                                                                                                             message.channel.send(`<@${user.id}> has been warned by <@${member.id}> for ` + '``' + `Other (High Severity)` + '``' + `.
 They now have ` + '``N/A``' + ` warnings in this category, and ` + '``N/A``' + ` total warnings.`)
                                                                                                             user.user.send(`You have been warned by <@${member.id}> for ` + '``' + `Other (High Severity)` + '``' + `.
 You now have ` + '``N/A``' + ` warnings in this category, and ` + '``N/A``' + ` total warnings.`)
-                                                                                                            message.channel.send(`<@${user.id}> has been auto-muted for 7d 0h 0m 0s`)
-                                                                                                            user.user.send(`You have been auto-muted for 7d 0h 0m 0s`)
+                                                                                                            message.channel.send(`<@${user.id}> has been auto-muted for 24h 0m 0s`)
+                                                                                                            user.user.send(`You have been auto-muted for 24h 0m 0s`)
                                                                                                             user.roles.add(role)
                                                                                                             setTimeout(function() {
                                                                                                                 user.roles.remove(role)
-                                                                                                            }, 604800 * 1000);
+                                                                                                            }, 86400 * 1000);
                                                                                                         } else {
                                                                                                             if (args[1].toLowerCase() === `severe`) {
                                                                                                                 message.channel.send(`<@${user.id}> has been warned by <@${member.id}> for ` + '``' + `Other (Severe Severity)` + '``' + `.
