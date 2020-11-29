@@ -1,4 +1,4 @@
-
+const discord = require('discord.js');
 module.exports = {
     name: `.suggest`,
     category: `fun`,
