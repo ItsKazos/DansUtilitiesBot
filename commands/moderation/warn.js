@@ -923,6 +923,8 @@ Appeal here: https://discord.gg/aKfcKs2RQg`)
                     }
                     
                 }
+            } else {
+                message.channel.send("Please type a user ID or mention a user.")
             }
         }
     }
