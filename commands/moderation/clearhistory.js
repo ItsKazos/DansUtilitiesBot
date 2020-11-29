@@ -1,3 +1,16 @@
+var mysql = require('mysql');
+var con = mysql.createConnection({
+    host: "na01-sql.pebblehost.com",
+    user: "customer_147102_discord",
+    password: "T!8jfFr$b#Xo!qn~otpb",
+    database: "customer_147102_discord"
+})
+
+con.connect(err => {
+    if(err) throw err;
+    console.log("connected to the database!")
+    con.query("SHOW TABLES", console.log);
+})
 
 module.exports = {
     name: `.clearhistory`,
