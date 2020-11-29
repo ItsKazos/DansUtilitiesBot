@@ -25,6 +25,9 @@ module.exports = {
         ) {
             let user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
             let role = message.guild.roles.cache.find(r => r.name === "Muted");
+            if(!user) {
+                message.channel.send("Please mention a user or a members ID")
+            }
             if (!role) {
                 return message.channel.send("Couldn't find the muted role!");
             }
